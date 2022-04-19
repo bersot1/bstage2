@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<string name="app_name">BStage</string>
+<string name="facebook_app_id">3034529030135831</string>
+<string name="fb_login_protocol_scheme">fb3034529030135831</string>
+<string name="facebook_client_token">0b66992a2686a549e1c633ad689826c4</string>
+</resources>

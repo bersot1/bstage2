@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "967898533242",
+    "project_id": "bstage-f8aea",
+    "storage_bucket": "bstage-f8aea.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:967898533242:android:2edb8e5362000a9979dac3",
+        "android_client_info": {
+          "package_name": "com.bstage.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "967898533242-h2u0kkhlui3u032dvbfknvsoer4kr5pc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCCnJ6M196MFteqW21hgFv5AaR9EhMqULs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "967898533242-h2u0kkhlui3u032dvbfknvsoer4kr5pc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

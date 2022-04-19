@@ -1,0 +1,1 @@
+enum enumEventType { private, public }
