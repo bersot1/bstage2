@@ -14,32 +14,47 @@ void main() {
   late HttpClientSpy httpClient;
   late String url;
   late List<Map> apiResult;
+  late Map<String, dynamic>? queryParameter;
 
   setUp(() {
     url = faker.internet.httpUrl();
     apiResult = EventsFactory.makeListPublicEvent();
 
     httpClient = HttpClientSpy();
-    httpClient.mockRequestGet(apiResult);
+    httpClient.mockRequestGetWithParameters(apiResult);
     sut = GetPublicEventUsecase(httpClient: httpClient, url: url);
   });
 
-  test('Should call HttpClient with correct values', () async {
-    await sut();
+  test('Should call HttpClient with correct values with no PerPage', () async {
+    queryParameter = {
+      "page": '1',
+      "per_page": '10',
+    };
+    await sut(page: '1');
 
-    verify(() => httpClient.get(url));
+    verify(() => httpClient.get(url, queryParameters: queryParameter));
+  });
+
+  test('Should call HttpClient with correct values with PerPage', () async {
+    queryParameter = {
+      "page": '1',
+      "per_page": '15',
+    };
+    await sut(page: '1', perPage: '15');
+
+    verify(() => httpClient.get(url, queryParameters: queryParameter));
   });
 
   test('Should return List<EventEntity if HttpClient returns 200>', () async {
-    final response = await sut();
+    final response = await sut(page: '1');
 
     expect(response, isA<List<EventEntity>>());
   });
 
   test('Should return Domain Enexpected error when http throws error', () {
-    httpClient.mockRequestGetError(HttpError.serverError);
+    httpClient.mockRequestGetWithParametersError(HttpError.serverError);
 
-    final response = sut();
+    final response = sut(page: '1');
 
     expect(response, throwsA(DomainError.unexpected));
   });

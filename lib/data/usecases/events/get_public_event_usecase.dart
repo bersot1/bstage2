@@ -8,10 +8,14 @@ class GetPublicEventUsecase implements IGetPublicEvent {
   GetPublicEventUsecase({required this.httpClient, required this.url});
 
   @override
-  Future<List<EventEntity>> call() async {
+  Future<List<EventEntity>> call({required String page, String perPage = '10'}) async {
     List<EventEntity> result = [];
     try {
-      final httpResponse = await httpClient.get(url) as List;
+      final queryParameter = {
+        "page": page,
+        "per_page": perPage,
+      };
+      final httpResponse = await httpClient.get(url, queryParameters: queryParameter) as List;
       result = httpResponse.map((json) => EventModel.fromJson(json).toEntity()).toList();
       return result;
     } on HttpError catch (_) {

@@ -25,7 +25,7 @@ class _SplashPageState extends State<SplashPage> {
   }
 
   verifyUserLogged() async {
-    await Future.delayed(Duration(seconds: 3));
+    // await Future.delayed(Duration(seconds: 3));
     widget.bloc.add(SplashPageStartEvent());
   }
 

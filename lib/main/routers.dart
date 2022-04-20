@@ -1,5 +1,4 @@
-import 'package:bstage2/main/factories/pages/login/login.dart';
-import 'package:bstage2/main/factories/pages/splash/splash.dart';
+import 'package:bstage2/ui/pages/home/home.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -16,8 +15,9 @@ class Routes {
 
   static GoRouter makeRoutes() => GoRouter(
         routes: [
-          routerbuilder(path: Routes.initial, page: makeSplashPage()),
-          routerbuilder(path: Routes.login, page: makeLoginPage()),
+          // routerbuilder(path: Routes.initial, page: makeSplashPage()),
+          // routerbuilder(path: Routes.login, page: makeLoginPage()),
+          routerbuilder(path: Routes.initial, page: const RootPage())
         ],
       );
 }
