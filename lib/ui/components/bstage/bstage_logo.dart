@@ -10,9 +10,10 @@ class BstageLogo extends StatelessWidget {
   final String nameAnimation;
   final Color colorAnimation;
   const BstageLogo({
+    Key? key,
     required this.nameAnimation,
     required this.colorAnimation,
-  });
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return FlareActor(

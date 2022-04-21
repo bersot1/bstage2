@@ -9,12 +9,13 @@ class BstageLoading extends StatelessWidget {
   final Color backgroundColor;
   final Color? textColor;
   const BstageLoading({
+    Key? key,
     required this.height,
     this.text = "",
     required this.iconColor,
     required this.backgroundColor,
     this.textColor,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

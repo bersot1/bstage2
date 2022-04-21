@@ -11,7 +11,7 @@ class _TabEventsPageState extends State<TabEventsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
+      body: const Center(
         child: Text('Tab Events'),
       ),
     );

@@ -41,12 +41,15 @@ const Color kDarkBackgroundColour = Color(0xff262626);
 const Color kDarkBackgroundShadowColour = Color(0xff1E1E1E);
 const Color kOutline = Color(0xff2E2E2E);
 
-Offset offMin = -Offset(5, 5), offMax = Offset(4.5, 4.5);
+Offset offMin = -const Offset(5, 5), offMax = const Offset(4.5, 4.5);
 final outerShadow = BoxDecoration(
   border: Border.all(color: Colors.transparent),
   color: kBackgroundColour,
   borderRadius: BorderRadius.circular(80),
-  boxShadow: [BoxShadow(blurRadius: 15, offset: offMin, color: whiteColor), BoxShadow(blurRadius: 15, offset: offMax, color: kDarkShadow)],
+  boxShadow: [
+    BoxShadow(blurRadius: 15, offset: offMin, color: whiteColor),
+    BoxShadow(blurRadius: 15, offset: offMax, color: kDarkShadow)
+  ],
 );
 
 BoxDecoration imageOuterShadow(Color color) => BoxDecoration(
@@ -61,8 +64,8 @@ BoxDecoration imageOuterShadow(Color color) => BoxDecoration(
           color: kDarkBackgroundColour,
         )
       ],
-      gradient: LinearGradient(
-        colors: const [
+      gradient: const LinearGradient(
+        colors: [
           Colors.transparent,
           orangeDarkColor,
         ],
@@ -100,11 +103,11 @@ final lightNeumorphicTheme = BstageNeumorphicTheme(
 );
 
 final kShadow = [
-  BoxShadow(blurRadius: 15, offset: -Offset(5, 5), color: whiteColor),
-  BoxShadow(blurRadius: 15, offset: Offset(4.5, 4.5), color: kDarkShadow)
+  BoxShadow(blurRadius: 15, offset: -const Offset(5, 5), color: whiteColor),
+  const BoxShadow(blurRadius: 15, offset: Offset(4.5, 4.5), color: kDarkShadow)
 ];
 
-final kDarkBackgroundShadow = [BoxShadow(blurRadius: 15, offset: Offset(4.5, 4.5), color: Color(0xff1E1E1E))];
+final kDarkBackgroundShadow = [const BoxShadow(blurRadius: 15, offset: Offset(4.5, 4.5), color: Color(0xff1E1E1E))];
 
 /// ----------------------------------------------
 /// [Bstage Styled Widgets]

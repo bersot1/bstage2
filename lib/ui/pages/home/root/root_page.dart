@@ -30,7 +30,7 @@ class _RootPageState extends State<RootPage> {
           return BottomNavigationBar(
             currentIndex: state.index,
             showUnselectedLabels: false,
-            items: [
+            items: const [
               BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Event'),
               BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Backstage'),
               BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Invitation'),
