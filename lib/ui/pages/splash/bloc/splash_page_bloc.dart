@@ -4,10 +4,10 @@ import 'package:bstage2/ui/pages/splash/bloc/splash_page_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SplashPageBloc extends Bloc<ISplashPageEvent, ISplashPageState> {
-  final IGetCurrentUsecase getCurrentUsecase;
+  final IUserLocalUsecase userLocalUsecase;
 
   SplashPageBloc({
-    required this.getCurrentUsecase,
+    required this.userLocalUsecase,
   }) : super(SplashPageLoadingState()) {
     on<SplashPageStartEvent>(_verifyUserExist);
   }
@@ -18,7 +18,7 @@ class SplashPageBloc extends Bloc<ISplashPageEvent, ISplashPageState> {
   ) async {
     emit(SplashPageLoadingState());
     try {
-      final result = await getCurrentUsecase();
+      final result = await userLocalUsecase.getCurrentUser();
       if (result != null) {
         emit(SplashPageUserLoggedState());
       } else {

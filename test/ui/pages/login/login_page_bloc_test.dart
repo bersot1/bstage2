@@ -7,10 +7,8 @@ import 'package:mocktail/mocktail.dart';
 
 import '../../../domain/params_factory.dart';
 import '../../../domain/user_entity_factory.dart';
-import '../../mocks/create_account_usecase_spy.dart';
-import '../../mocks/insert_account_local_spy.dart';
-import '../../mocks/login_facebook_usecase_spy.dart';
-import '../../mocks/verify_account_exist_usecase_spy.dart';
+import '../../mocks/mocks.dart';
+import '../../mocks/user_local_usecase_spy.dart';
 
 class CreateAccountParamsFake extends Fake implements CreateAccountParams {}
 
@@ -19,10 +17,8 @@ class UserEntityFake extends Fake implements UserEntity {}
 void main() {
   late LoginPageBloc loginPageBloc;
 
-  late CreateAccountUsecaseSpy createAccountUsecaseSpy;
-  late LoginFacebookUsecaseSpy loginFacebookUsecaseSpy;
-  late InsertAccountLocalUsecaseSpy insertAccountLocalUsecaseSpy;
-  late VerifyAccountExistUsecaseSpy verifyAccountExistUsecaseSpy;
+  late UserLocalUsecaseSpy userLocalUsecaseSpy;
+  late UserRemoteUsecaseSpy userRemoteUsecaseSpy;
 
   late ResultLoginSocial? resultLoginSocial;
   late UserEntity resultCreateUser;
@@ -31,23 +27,19 @@ void main() {
     resultLoginSocial = ParamsFactory.makeResultLoginSocial();
     resultCreateUser = UserEntityFactory.makeNewUserEntity();
 
-    loginFacebookUsecaseSpy = LoginFacebookUsecaseSpy();
-    loginFacebookUsecaseSpy.mockCall(resultLoginSocial);
+    userRemoteUsecaseSpy = UserRemoteUsecaseSpy();
+    userLocalUsecaseSpy = UserLocalUsecaseSpy();
 
-    createAccountUsecaseSpy = CreateAccountUsecaseSpy();
-    createAccountUsecaseSpy.mockCall(resultCreateUser);
+    userRemoteUsecaseSpy.mockCallLoginSocial(resultLoginSocial);
+    userRemoteUsecaseSpy.mockCallCreate(resultCreateUser);
+    userRemoteUsecaseSpy.mockCallVerifyIfUserExist(null);
 
-    insertAccountLocalUsecaseSpy = InsertAccountLocalUsecaseSpy();
-    insertAccountLocalUsecaseSpy.mockCall();
-
-    verifyAccountExistUsecaseSpy = VerifyAccountExistUsecaseSpy();
-    verifyAccountExistUsecaseSpy.mockCall(null);
+    userLocalUsecaseSpy.mockCallInsertUser();
 
     loginPageBloc = LoginPageBloc(
-        loginSocial: loginFacebookUsecaseSpy,
-        createAccountUsecase: createAccountUsecaseSpy,
-        insertAccountLocalUsecase: insertAccountLocalUsecaseSpy,
-        verifyAccountExistUsecase: verifyAccountExistUsecaseSpy);
+      userLocalUsecase: userLocalUsecaseSpy,
+      userRemoteUsecase: userRemoteUsecaseSpy,
+    );
   });
 
   setUpAll(() {
@@ -65,7 +57,7 @@ void main() {
   blocTest(
     'Should emits [loading, loginSuccess] when facebook return true and users already exist',
     build: () {
-      verifyAccountExistUsecaseSpy.mockCall(UserEntityFactory.makeNewUserEntity());
+      userRemoteUsecaseSpy.mockCallVerifyIfUserExist(UserEntityFactory.makeNewUserEntity());
 
       return loginPageBloc;
     },
@@ -76,7 +68,7 @@ void main() {
   blocTest(
     'Should emits [loading, loginWithFacebookError] when loginFacebook returns null',
     build: () {
-      loginFacebookUsecaseSpy.mockCall(null);
+      userRemoteUsecaseSpy.mockCallLoginSocial(null);
 
       return loginPageBloc;
     },
@@ -87,7 +79,7 @@ void main() {
   blocTest(
     'Should emits [loading, loginWithFacebookError] when createUser throws',
     build: () {
-      createAccountUsecaseSpy.mockCallError(DomainError.unexpected);
+      userRemoteUsecaseSpy.mockCallCreateError(DomainError.unexpected);
 
       return loginPageBloc;
     },

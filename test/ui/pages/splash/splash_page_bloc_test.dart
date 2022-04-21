@@ -6,18 +6,18 @@ import 'package:bstage2/ui/pages/splash/bloc/splash_page_state.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../../domain/user_entity_factory.dart';
-import '../../mocks/get_current_usecase_spy.dart';
+import '../../mocks/mocks.dart';
 
 void main() {
   late SplashPageBloc bloc;
-  late GetCurrentUsecaseSpy getCurrentUsecase;
+  late UserLocalUsecaseSpy userLocalUsecaseSpy;
   late UserEntity? resultUsecase;
 
   setUp(() {
     resultUsecase = UserEntityFactory.makeNewUserEntity();
-    getCurrentUsecase = GetCurrentUsecaseSpy();
-    getCurrentUsecase.mockCall(resultUsecase);
-    bloc = SplashPageBloc(getCurrentUsecase: getCurrentUsecase);
+    userLocalUsecaseSpy = UserLocalUsecaseSpy();
+    userLocalUsecaseSpy.mockCallGetCurrentUser(resultUsecase);
+    bloc = SplashPageBloc(userLocalUsecase: userLocalUsecaseSpy);
   });
 
   blocTest('Should emit [loading, loggedState ] when found user',
@@ -26,7 +26,7 @@ void main() {
       expect: () => [isA<SplashPageLoadingState>(), isA<SplashPageUserLoggedState>()]);
   blocTest('Should emit [loading, userNotFoundState] when not found user',
       build: () {
-        getCurrentUsecase.mockCall(null);
+        userLocalUsecaseSpy.mockCallGetCurrentUser(null);
         return bloc;
       },
       act: (_) => bloc.add(SplashPageStartEvent()),
@@ -34,7 +34,7 @@ void main() {
 
   blocTest('Should emit [loading, UnexpectedError] when something was wrong',
       build: () {
-        getCurrentUsecase.mockCallError(DomainError.unexpected);
+        userLocalUsecaseSpy.mockCallGetCurrentUserError(DomainError.unexpected);
         return bloc;
       },
       act: (_) => bloc.add(SplashPageStartEvent()),

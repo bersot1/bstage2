@@ -1,2 +1,2 @@
-export 'events/events.dart';
-export 'user/user.dart';
+export 'event.dart';
+export 'user.dart';

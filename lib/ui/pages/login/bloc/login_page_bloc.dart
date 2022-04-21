@@ -1,18 +1,14 @@
 import 'package:bstage2/domain/domain.dart';
-import 'package:bstage2/domain/usecases/user/login_social_usecase.dart';
 import 'package:bstage2/ui/pages/login/bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginPageBloc extends Bloc<ILoginPageEvent, ILoginPageState> {
-  final ILoginSocial loginSocial;
-  final ICreateAccountUsecase createAccountUsecase;
-  final IInsertAccountLocalUsecase insertAccountLocalUsecase;
-  final IVerifyAccountExistUsecase verifyAccountExistUsecase;
+  final IUserLocalUsecase userLocalUsecase;
+  final IUserRemoteUsecase userRemoteUsecase;
+
   LoginPageBloc({
-    required this.loginSocial,
-    required this.createAccountUsecase,
-    required this.insertAccountLocalUsecase,
-    required this.verifyAccountExistUsecase,
+    required this.userLocalUsecase,
+    required this.userRemoteUsecase,
   }) : super(LoginPageInitialState()) {
     on<LoginWithFacebookEvent>(loginWithFacebook);
   }
@@ -23,11 +19,11 @@ class LoginPageBloc extends Bloc<ILoginPageEvent, ILoginPageState> {
   ) async {
     try {
       emit(LoginPageLoading());
-      final loginFb = await loginSocial.call();
+      final loginFb = await userRemoteUsecase.loginSocial();
       if (loginFb != null) {
-        final accountExist = await verifyAccountExistUsecase(loginFb.idFacebook);
+        final accountExist = await userRemoteUsecase.verifyIfUserExist(loginFb.idFacebook);
         if (accountExist != null) {
-          await insertAccountLocalUsecase.call(accountExist);
+          await userLocalUsecase.insertUser(accountExist);
           emit(LoginWithFacebookSuccess());
         } else {
           final splitName = loginFb.name.split(' ');
@@ -37,8 +33,8 @@ class LoginPageBloc extends Bloc<ILoginPageEvent, ILoginPageState> {
             email: loginFb.email,
             picture: loginFb.picture,
           );
-          final createdUser = await createAccountUsecase.call(account: createAccountParams);
-          await insertAccountLocalUsecase.call(createdUser);
+          final createdUser = await userRemoteUsecase.create(account: createAccountParams);
+          await userLocalUsecase.insertUser(createdUser);
           emit(LoginWithFacebookSuccess());
         }
       } else {
@@ -56,6 +52,4 @@ class LoginPageBloc extends Bloc<ILoginPageEvent, ILoginPageState> {
       }
     }
   }
-
-  UserEntity? _verifyAccountExist(String idFacebook) {}
 }
