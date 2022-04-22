@@ -1,7 +1,7 @@
 import 'package:bstage2/domain/domain.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../user_entity_factory.dart';
+import '../factory/user_entity_factory.dart';
 
 main() {
   late UserEntity user;

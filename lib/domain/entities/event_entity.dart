@@ -3,6 +3,7 @@ import 'package:equatable/equatable.dart';
 
 class EventEntity extends Equatable {
   final String id;
+  final DateTime register;
   final bool isActive;
   final String name;
   final String description;
@@ -20,6 +21,7 @@ class EventEntity extends Equatable {
 
   const EventEntity({
     required this.id,
+    required this.register,
     required this.isActive,
     required this.name,
     required this.description,

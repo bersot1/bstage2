@@ -1,7 +1,7 @@
 import 'package:bstage2/domain/domain.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../event_entity_factory.dart';
+import '../factory/event_entity_factory.dart';
 
 main() {
   late EventEntity event;

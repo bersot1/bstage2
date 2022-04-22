@@ -5,7 +5,7 @@ import 'package:bstage2/ui/pages/splash/bloc/splash_page_event.dart';
 import 'package:bstage2/ui/pages/splash/bloc/splash_page_state.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../../../domain/user_entity_factory.dart';
+import '../../../domain/factory/user_entity_factory.dart';
 import '../../mocks/mocks.dart';
 
 void main() {

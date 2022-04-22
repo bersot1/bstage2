@@ -5,8 +5,8 @@ import 'package:bstage2/domain/domain.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-import '../../domain/user_entity_factory.dart';
-import '../mocks/cache_storage_spy.dart';
+import '../../domain/factory/user_entity_factory.dart';
+import '../spys/cache_storage_spy.dart';
 
 void main() {
   late UserLocalUsecase sut;

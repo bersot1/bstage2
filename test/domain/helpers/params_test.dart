@@ -1,7 +1,7 @@
 import 'package:bstage2/domain/domain.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../params_factory.dart';
+import '../factory/params_factory.dart';
 
 void main() {
   late CreateAccountParams createAccountParams;

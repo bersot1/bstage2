@@ -5,8 +5,8 @@ import 'package:bstage2/ui/pages/login/bloc/bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-import '../../../domain/params_factory.dart';
-import '../../../domain/user_entity_factory.dart';
+import '../../../domain/factory/params_factory.dart';
+import '../../../domain/factory/user_entity_factory.dart';
 import '../../mocks/mocks.dart';
 import '../../mocks/user_local_usecase_spy.dart';
 

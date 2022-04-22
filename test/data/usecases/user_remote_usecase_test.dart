@@ -6,10 +6,10 @@ import 'package:faker/faker.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-import '../../domain/params.factory.dart';
-import '../../domain/user_entity_factory.dart';
-import '../mocks/fb_package_client_spy.dart';
-import '../mocks/http_client_spy.dart';
+import '../../domain/factory/params_factory.dart';
+import '../../domain/factory/user_entity_factory.dart';
+import '../spys/fb_package_client_spy.dart';
+import '../spys/http_client_spy.dart';
 
 void main() {
   late UserRemoteUsecase sut;
