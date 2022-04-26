@@ -6,4 +6,4 @@
 [X] - tabInvitation -> get all invitations events
 [X] - tabInvitation -> get all invitations promoter
 
-[] - TabBackstage -> get all my events 
+[X] - TabBackstage -> get all my events 
