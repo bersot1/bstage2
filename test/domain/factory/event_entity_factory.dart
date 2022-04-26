@@ -53,7 +53,7 @@ class EventsFactory {
         "ativo": true,
         "nome": faker.lorem.word(),
         "descricao": faker.lorem.sentence(),
-        "destaque": faker.date.dateTime().toIso8601String(),
+        "destaque": null,
         "inicio": faker.date.dateTime().toIso8601String(),
         "fim": faker.date.dateTime().toIso8601String(),
         "telefone": faker.phoneNumber.us(),

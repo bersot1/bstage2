@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:bstage2/data/data.dart';
 import 'package:bstage2/domain/domain.dart';
 import 'package:bstage2/domain/helpers/params/create_event_params.dart';
+import 'package:faker/faker.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -14,11 +15,13 @@ void main() {
   late EventUsecase sut;
   late HttpClientSpy httpClient;
   late List<Map> apiResult;
+  late String idUser;
 
   setUp(() {
     httpClient = HttpClientSpy();
     sut = EventUsecase(httpClient);
     apiResult = EventsFactory.makeListPublicEvent();
+    httpClient.mockRequestGet(apiResult);
   });
 
   group('EventUsecase - Create', () {
@@ -98,9 +101,6 @@ void main() {
   });
 
   group('EventUsecase - GetPrimiumEvents', () {
-    setUp(() {
-      httpClient.mockRequestGet(apiResult);
-    });
     test('Should call HttpClient with correct values', () async {
       await sut.getPremiums();
 
@@ -117,6 +117,31 @@ void main() {
       httpClient.mockRequestGetWithParametersError(HttpError.serverError);
 
       final response = sut.getPremiums();
+
+      expect(response, throwsA(DomainError.unexpected));
+    });
+  });
+
+  group('EventUsecase - GetAllUserEventAsCreator', () {
+    setUp(() {
+      idUser = faker.guid.guid();
+    });
+    test('Should call httClient with correct values', () async {
+      await sut.getAllUserEventAsCreator(idUser: idUser);
+
+      verify(() => httpClient.get('eventos/quecriei/$idUser'));
+    });
+
+    test('Should return List<EventEntity if HttpClient returns 200>', () async {
+      final response = await sut.getAllUserEventAsCreator(idUser: idUser);
+
+      expect(response, isA<List<EventEntity>>());
+    });
+
+    test('Should return Domain Enexpected error when http throws error', () {
+      httpClient.mockRequestGetWithParametersError(HttpError.serverError);
+
+      final response = sut.getAllUserEventAsCreator(idUser: idUser);
 
       expect(response, throwsA(DomainError.unexpected));
     });

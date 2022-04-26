@@ -50,4 +50,16 @@ class EventUsecase implements IEventUsecases {
       throw DomainError.unexpected;
     }
   }
+
+  @override
+  Future<List<EventEntity>> getAllUserEventAsCreator({required String idUser}) async {
+    try {
+      List<EventEntity> result = [];
+      final httpResponse = await client.get('eventos/quecriei/$idUser') as List;
+      result = httpResponse.map((json) => EventModel.fromJson(json).toEntity()).toList();
+      return result;
+    } catch (e) {
+      throw DomainError.unexpected;
+    }
+  }
 }
