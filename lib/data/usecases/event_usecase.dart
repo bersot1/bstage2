@@ -52,7 +52,7 @@ class EventUsecase implements IEventUsecases {
   }
 
   @override
-  Future<List<EventEntity>> getAllUserEventAsCreator({required String idUser}) async {
+  Future<List<EventEntity>> getAllEventAsCreatorByUser({required String idUser}) async {
     try {
       List<EventEntity> result = [];
       final httpResponse = await client.get('eventos/quecriei/$idUser') as List;

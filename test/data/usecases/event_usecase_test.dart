@@ -127,13 +127,13 @@ void main() {
       idUser = faker.guid.guid();
     });
     test('Should call httClient with correct values', () async {
-      await sut.getAllUserEventAsCreator(idUser: idUser);
+      await sut.getAllEventAsCreatorByUser(idUser: idUser);
 
       verify(() => httpClient.get('eventos/quecriei/$idUser'));
     });
 
     test('Should return List<EventEntity if HttpClient returns 200>', () async {
-      final response = await sut.getAllUserEventAsCreator(idUser: idUser);
+      final response = await sut.getAllEventAsCreatorByUser(idUser: idUser);
 
       expect(response, isA<List<EventEntity>>());
     });
@@ -141,7 +141,7 @@ void main() {
     test('Should return Domain Enexpected error when http throws error', () {
       httpClient.mockRequestGetWithParametersError(HttpError.serverError);
 
-      final response = sut.getAllUserEventAsCreator(idUser: idUser);
+      final response = sut.getAllEventAsCreatorByUser(idUser: idUser);
 
       expect(response, throwsA(DomainError.unexpected));
     });
