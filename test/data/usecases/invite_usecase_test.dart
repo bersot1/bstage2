@@ -2,11 +2,11 @@ import 'package:bstage2/data/http/http_error.dart';
 import 'package:bstage2/data/models/event_user_was_invited_model.dart';
 import 'package:bstage2/data/usecases/invite_usecase.dart';
 import 'package:bstage2/domain/helpers/helpers.dart';
+import 'package:bstage2/mock_data/event_user_was_invited_model_factory.dart';
 import 'package:faker/faker.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-import '../../domain/factory/event_user_was_invited_model_factory.dart';
 import '../spys/http_client_spy.dart';
 
 void main() {

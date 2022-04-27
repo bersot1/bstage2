@@ -1,12 +1,12 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:bstage2/data/models/event_user_was_invited_model.dart';
 import 'package:bstage2/domain/domain.dart';
+import 'package:bstage2/mock_data/event_user_was_invited_model_factory.dart';
+import 'package:bstage2/mock_data/user_entity_factory.dart';
 import 'package:bstage2/ui/pages/home/tab_invitations/tab_invitations.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-import '../../../../../domain/factory/event_user_was_invited_model_factory.dart';
-import '../../../../../domain/factory/user_entity_factory.dart';
 import '../../../../mocks/invites_remote_usecase_spy.dart';
 import '../../../../mocks/user_local_usecase_spy.dart';
 

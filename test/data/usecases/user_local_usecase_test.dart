@@ -2,10 +2,10 @@ import 'dart:convert';
 
 import 'package:bstage2/data/data.dart';
 import 'package:bstage2/domain/domain.dart';
+import 'package:bstage2/mock_data/user_entity_factory.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-import '../../domain/factory/user_entity_factory.dart';
 import '../spys/cache_storage_spy.dart';
 
 void main() {

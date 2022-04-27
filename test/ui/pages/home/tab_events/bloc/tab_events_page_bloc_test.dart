@@ -1,11 +1,11 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:bstage2/domain/domain.dart';
+import 'package:bstage2/mock_data/event_entity_factory.dart';
 import 'package:bstage2/ui/pages/home/home.dart';
 import 'package:faker/faker.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-import '../../../../../domain/factory/event_entity_factory.dart';
 import '../../../../mocks/event_remote_usecase_spy.dart';
 
 void main() {

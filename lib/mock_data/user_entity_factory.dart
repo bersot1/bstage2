@@ -1,5 +1,6 @@
 import 'package:bstage2/data/data.dart';
 import 'package:bstage2/domain/domain.dart';
+import 'package:bstage2/domain/helpers/params/result_login_social_param.dart';
 import 'package:faker/faker.dart';
 
 class UserEntityFactory {
@@ -51,6 +52,13 @@ class UserEntityFactory {
         },
         "id": faker.guid.guid(),
       };
+
+  static ResultLoginSocial makeResultLoginSocial() => ResultLoginSocial(
+        name: faker.person.name(),
+        email: faker.internet.email(),
+        idFacebook: faker.guid.guid(),
+        picture: faker.image.image(),
+      );
 
   static UserModel makeUserModel() => UserModel(
         id: faker.guid.guid(),

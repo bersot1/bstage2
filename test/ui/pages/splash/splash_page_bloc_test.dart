@@ -1,11 +1,11 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:bstage2/domain/domain.dart';
+import 'package:bstage2/mock_data/user_entity_factory.dart';
 import 'package:bstage2/ui/pages/splash/bloc/splash_page_bloc.dart';
 import 'package:bstage2/ui/pages/splash/bloc/splash_page_event.dart';
 import 'package:bstage2/ui/pages/splash/bloc/splash_page_state.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../../../domain/factory/user_entity_factory.dart';
 import '../../mocks/mocks.dart';
 
 void main() {

@@ -1,8 +1,8 @@
 import 'package:bstage2/ui/themes/themes.dart';
 import 'package:flutter/material.dart';
 
-class BstageBackgroundLogin extends StatelessWidget {
-  const BstageBackgroundLogin({Key? key}) : super(key: key);
+class BstageBackground extends StatelessWidget {
+  const BstageBackground({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

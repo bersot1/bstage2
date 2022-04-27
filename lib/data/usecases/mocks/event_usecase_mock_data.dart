@@ -1,0 +1,52 @@
+import 'package:bstage2/domain/domain.dart';
+import 'package:bstage2/mock_data/event_entity_factory.dart';
+
+class EventUsecaseMock implements IEventUsecases {
+  @override
+  Future<bool> create(CreateEventParams param) {
+    // TODO: implement create
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<EventEntity>> getAllEventAsCreatorByUser({required String idUser}) {
+    List<EventEntity> events = [];
+    events = [
+      EventsFactory.makeEventEntity(),
+      EventsFactory.makeEventEntity(),
+      EventsFactory.makeEventEntity(),
+      EventsFactory.makeEventEntity(),
+      EventsFactory.makeEventEntity(),
+      EventsFactory.makeEventEntity(),
+    ];
+    return Future.value(events);
+  }
+
+  @override
+  Future<List<EventEntity>> getPremiums() {
+    List<EventEntity> events = [];
+    events = [
+      EventsFactory.makeEventEntity(),
+      EventsFactory.makeEventEntity(),
+      EventsFactory.makeEventEntity(),
+      EventsFactory.makeEventEntity(),
+      EventsFactory.makeEventEntity(),
+      EventsFactory.makeEventEntity(),
+    ];
+    return Future.value(events);
+  }
+
+  @override
+  Future<List<EventEntity>> getPublics({required String page, String perPage = '1'}) {
+    List<EventEntity> events = [];
+    events = [
+      EventsFactory.makeEventEntity(),
+      EventsFactory.makeEventEntity(),
+      EventsFactory.makeEventEntity(),
+      EventsFactory.makeEventEntity(),
+      EventsFactory.makeEventEntity(),
+      EventsFactory.makeEventEntity(),
+    ];
+    return Future.value(events);
+  }
+}

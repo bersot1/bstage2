@@ -3,11 +3,11 @@ import 'dart:io';
 import 'package:bstage2/data/data.dart';
 import 'package:bstage2/domain/domain.dart';
 import 'package:bstage2/domain/helpers/params/create_event_params.dart';
+import 'package:bstage2/mock_data/event_entity_factory.dart';
 import 'package:faker/faker.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-import '../../domain/factory/event_entity_factory.dart';
 import '../../domain/factory/params_factory.dart';
 import '../spys/http_client_spy.dart';
 

@@ -2,12 +2,12 @@ import 'package:bstage2/data/data.dart';
 import 'package:bstage2/domain/domain.dart';
 import 'package:bstage2/domain/helpers/params/create_user_params.dart';
 import 'package:bstage2/domain/helpers/params/result_login_social_param.dart';
+import 'package:bstage2/mock_data/user_entity_factory.dart';
 import 'package:faker/faker.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
 import '../../domain/factory/params_factory.dart';
-import '../../domain/factory/user_entity_factory.dart';
 import '../spys/fb_package_client_spy.dart';
 import '../spys/http_client_spy.dart';
 
