@@ -3,31 +3,45 @@ import 'package:bstage2/ui/pages/home/home.dart';
 import 'package:bstage2/ui/themes/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  MyApp({Key? key}) : super(key: key);
+class MyApp extends StatefulWidget {
+  const MyApp({Key? key}) : super(key: key);
 
-  final _router = Routes.makeRoutes();
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  late GoRouter _router;
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
 
-    return MultiProvider(
-      providers: [
-        Provider<RootPageBloc>(create: (_) => RootPageBloc()),
-      ],
-      child: MaterialApp.router(
-        theme: BstageTheme.darkTheme,
-        title: 'BStage',
-        routeInformationParser: _router.routeInformationParser,
-        routerDelegate: _router.routerDelegate,
-      ),
-    );
+    return Builder(builder: (context) {
+      _router = Routes.makeRoutes(context);
+      return MultiProvider(
+        providers: [
+          Provider<RootPageBloc>(create: (_) => RootPageBloc()),
+        ],
+        child: MaterialApp.router(
+          theme: BstageTheme.darkTheme,
+          title: 'BStage',
+          routeInformationParser: _router.routeInformationParser,
+          routerDelegate: _router.routerDelegate,
+        ),
+      );
+    });
   }
 }

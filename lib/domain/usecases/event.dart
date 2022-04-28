@@ -1,4 +1,4 @@
-import 'package:bstage2/domain/domain.dart';
+import '../../domain/domain.dart';
 
 abstract class IEventUsecases {
   Future<bool> create(CreateEventParams param);

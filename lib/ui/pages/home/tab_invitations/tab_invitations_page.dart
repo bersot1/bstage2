@@ -11,6 +11,7 @@ class _TabInvitationsPageState extends State<TabInvitationsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.transparent,
       body: Center(
         child: Text('Tab Invitation'),
       ),

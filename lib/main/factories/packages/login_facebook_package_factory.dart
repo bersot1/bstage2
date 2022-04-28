@@ -1,4 +1,4 @@
-import 'package:bstage2/data/data.dart';
-import 'package:bstage2/infra/packages/login_facebook_pkg_adapater.dart';
+import '../../../data/data.dart';
+import '../../../infra/infra.dart';
 
 IFacebookPackage makeFbPackage() => LoginFacebookPkgAdapter();

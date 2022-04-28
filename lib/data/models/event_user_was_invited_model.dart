@@ -1,6 +1,5 @@
-import 'package:bstage2/data/data.dart';
-
-import '../../domain/helpers/enums.dart';
+import '../../data/data.dart';
+import '../../domain/domain.dart';
 
 class EventUserWasInvitedModel {
   final String invitedBy;

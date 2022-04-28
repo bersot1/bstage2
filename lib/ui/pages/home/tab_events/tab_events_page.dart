@@ -11,7 +11,7 @@ class _TabEventsPageState extends State<TabEventsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.purple,
+      backgroundColor: Colors.transparent,
       body: const Center(
         child: Text('Tab Events'),
       ),

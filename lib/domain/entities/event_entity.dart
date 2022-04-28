@@ -1,5 +1,6 @@
-import 'package:bstage2/domain/helpers/enums.dart';
 import 'package:equatable/equatable.dart';
+
+import '../../domain/domain.dart';
 
 class EventEntity extends Equatable {
   final String id;

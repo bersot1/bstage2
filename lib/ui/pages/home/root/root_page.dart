@@ -8,9 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class RootPage extends StatefulWidget {
-  const RootPage({
-    Key? key,
-  }) : super(key: key);
+  const RootPage({Key? key}) : super(key: key);
 
   @override
   State<RootPage> createState() => _RootPageState();
@@ -37,70 +35,109 @@ class _RootPageState extends State<RootPage> with SingleTickerProviderStateMixin
   @override
   Widget build(BuildContext context) {
     final bloc = context.read<RootPageBloc>();
+    // return Scaffold(
+    //   body: Stack(
+    //     children: [
+    //       const BstageBackground(),
+    //       Column(
+    //         crossAxisAlignment: CrossAxisAlignment.start,
+    //         children: [
+    //           Expanded(
+    //             child: BlocBuilder<RootPageBloc, RootPageTabsState>(
+    //               bloc: bloc,
+    //               builder: (context, state) {
+    //                 return SizedBox(
+    //                   height: double.infinity,
+    //                   child: Stack(
+    //                     children: [
+    //                       buildTabs(),
+    //                       buildContentSelected(state),
+    //                     ],
+    //                   ),
+    //                 );
+    //               },
+    //             ),
+    //           ),
+    //         ],
+    //       ),
+    //     ],
+    //   ),
+    // );
+
     return Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        backgroundColor: orangeColor,
+        onPressed: () {},
+      ),
+      bottomNavigationBar: BlocBuilder<RootPageBloc, RootPageTabsState>(
+        bloc: bloc,
+        builder: (context, state) {
+          state is RootPageTabsState;
+          return BottomAppBar(
+            shape: const CircularNotchedRectangle(),
+            child: SizedBox(
+              height: 50,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      _buildTabButton(Icons.home, "Home", () => bloc.add(RootPageTabEventEvent()), state.index == 0),
+                      _buildTabButton(Icons.airplane_ticket, "Convites", () => bloc.add(RootPageTabInvitationsEvent()),
+                          state.index == 1),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      _buildTabButton(
+                          Icons.car_rental, "Backstage", () => bloc.add(RootPageTabBackstageEvent()), state.index == 2),
+                      _buildTabButton(Icons.person, "Perfil", () {}, false),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
+      ),
       body: Stack(
         children: [
           const BstageBackground(),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Expanded(
-                child: BlocBuilder<RootPageBloc, RootPageTabsState>(
-                  bloc: bloc,
-                  builder: (context, state) {
-                    return SizedBox(
-                      height: double.infinity,
-                      child: Stack(
-                        children: [
-                          buildTabs(),
-                          buildContentSelected(state),
-                        ],
-                      ),
-                    );
-                  },
-                ),
-              ),
-            ],
+          BlocBuilder<RootPageBloc, RootPageTabsState>(
+            bloc: bloc,
+            builder: (context, state) {
+              if (state.navbarItem == NavbarItem.event) return const TabEventsPage();
+              if (state.navbarItem == NavbarItem.backstage) return const TabBackstagePage();
+              if (state.navbarItem == NavbarItem.invitation) return const TabInvitationsPage();
+              return Container();
+            },
           ),
         ],
       ),
     );
+  }
 
-    // Scaffold(
-    //   bottomNavigationBar: BlocBuilder<RootPageBloc, RootPageTabsState>(
-    //     bloc: bloc,
-    //     builder: (context, state) {
-    //       state is RootPageTabsState;
-    //       return BottomNavigationBar(
-    //         currentIndex: state.index,
-    //         showUnselectedLabels: false,
-    //         items: const [
-    //           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Event'),
-    //           BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Backstage'),
-    //           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Invitation'),
-    //         ],
-    //         onTap: (index) {
-    //           if (index == 0) {
-    //             bloc.add(RootPageTabEventEvent());
-    //           } else if (index == 1) {
-    //             bloc.add(RootPageTabBackstageEvent());
-    //           } else if (index == 2) {
-    //             bloc.add(RootPageTabInvitationsEvent());
-    //           }
-    //         },
-    //       );
-    //     },
-    //   ),
-    //   body: BlocBuilder<RootPageBloc, RootPageTabsState>(
-    //     bloc: bloc,
-    //     builder: (context, state) {
-    //       if (state.navbarItem == NavbarItem.event) return const TabEventsPage();
-    //       if (state.navbarItem == NavbarItem.backstage) return const TabBackstagePage();
-    //       if (state.navbarItem == NavbarItem.invitation) return const TabInvitationsPage();
-    //       return Container();
-    //     },
-    //   ),
-    // );
+  Widget _buildTabButton(IconData icon, String text, Function()? func, bool selected) {
+    return MaterialButton(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(
+            icon,
+            color: selected ? orangeColor : Colors.black,
+          ),
+          Text(
+            text,
+            style: TextStyle(
+              color: selected ? orangeColor : Colors.black,
+            ),
+          ),
+        ],
+      ),
+      onPressed: func,
+    );
   }
 
   Widget buildContentSelected(RootPageTabsState state) {
@@ -132,7 +169,7 @@ class _RootPageState extends State<RootPage> with SingleTickerProviderStateMixin
             BstageTabText(text: 'Eventos', func: () => bloc.add(RootPageTabEventEvent())),
             BstageTabText(text: 'Backstage', func: () => bloc.add(RootPageTabBackstageEvent())),
             BstageTabText(text: 'Convites', func: () => bloc.add(RootPageTabInvitationsEvent())),
-            BstageTabAvatarProfile(urlPicture: 'urlPicture')
+            BstageTabAvatarProfile(urlPicture: 'https://i.pravatar.cc/300')
           ],
         ),
       ),

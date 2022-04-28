@@ -1,5 +1,6 @@
-import 'package:bstage2/data/data.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+
+import '../../data/data.dart';
 
 class LoginFacebookPkgAdapter implements IFacebookPackage {
   @override

@@ -1,5 +1,5 @@
-import 'package:bstage2/data/data.dart';
-import 'package:bstage2/domain/domain.dart';
-import 'package:bstage2/main/factories/cache/cache.dart';
+import '../../../data/data.dart';
+import '../../../domain/domain.dart';
+import '../../../main/main_export.dart';
 
 IUserLocalUsecase makeUserLocalUsecase() => UserLocalUsecase(makeCacheStorage());

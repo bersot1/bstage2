@@ -1,9 +1,9 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:bstage2/data/http/http.dart';
-import 'package:bstage2/data/http/http_client.dart';
 import 'package:dio/dio.dart';
+
+import '../../data/data.dart';
 
 class HttpAdapterDio implements IHttpClient {
   final Dio dio;

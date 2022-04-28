@@ -1,5 +1,6 @@
-import 'package:bstage2/domain/domain.dart';
 import 'package:equatable/equatable.dart';
+
+import '../../domain/domain.dart';
 
 class UserModel extends Equatable {
   final String id;

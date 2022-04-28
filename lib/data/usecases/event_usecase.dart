@@ -1,8 +1,5 @@
-import 'package:bstage2/data/data.dart';
-import 'package:bstage2/domain/domain.dart';
-import 'package:bstage2/domain/entities/event_entity.dart';
-import 'package:bstage2/domain/helpers/params/create_event_params.dart';
-import 'package:bstage2/domain/usecases/event.dart';
+import '../../data/data.dart';
+import '../../domain/domain.dart';
 
 class EventUsecase implements IEventUsecases {
   final IHttpClient client;

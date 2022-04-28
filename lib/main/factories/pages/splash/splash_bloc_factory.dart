@@ -1,4 +1,4 @@
-import 'package:bstage2/main/factories/usecases/user_local_usecase_factory.dart';
-import 'package:bstage2/ui/pages/splash/bloc/splash_page_bloc.dart';
+import '../../../../main/main_export.dart';
+import '../../../../ui/ui.dart';
 
 SplashPageBloc makeSplashPageBloc() => SplashPageBloc(userLocalUsecase: makeUserLocalUsecase());

@@ -1,5 +1,3 @@
-import 'package:bstage2/domain/helpers/params/result_login_social_param.dart';
-
 import '../domain.dart';
 
 abstract class IUserRemoteUsecase {

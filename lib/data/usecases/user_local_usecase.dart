@@ -1,9 +1,7 @@
 import 'dart:convert';
 
-import 'package:bstage2/data/data.dart';
-import 'package:bstage2/domain/domain.dart';
-import 'package:bstage2/domain/entities/user_entity.dart';
-import 'package:bstage2/domain/usecases/user.dart';
+import '../../data/data.dart';
+import '../../domain/domain.dart';
 
 class UserLocalUsecase implements IUserLocalUsecase {
   final ICacheStorage cacheStorage;

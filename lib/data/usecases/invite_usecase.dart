@@ -1,7 +1,5 @@
-import 'package:bstage2/data/data.dart';
-import 'package:bstage2/data/models/event_user_was_invited_model.dart';
-import 'package:bstage2/domain/helpers/helpers.dart';
-import 'package:bstage2/domain/usecases/invites.dart';
+import '../../data/data.dart';
+import '../../domain/domain.dart';
 
 class InviteUsecase implements IInvitesUsecase {
   final IHttpClient httpClient;

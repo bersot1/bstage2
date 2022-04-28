@@ -1,9 +1,5 @@
-import 'package:bstage2/data/data.dart';
-import 'package:bstage2/domain/domain.dart';
-import 'package:bstage2/domain/entities/user_entity.dart';
-import 'package:bstage2/domain/helpers/params/create_user_params.dart';
-import 'package:bstage2/domain/helpers/params/result_login_social_param.dart';
-import 'package:bstage2/domain/usecases/user.dart';
+import '../../data/data.dart';
+import '../../domain/domain.dart';
 
 class UserRemoteUsecase implements IUserRemoteUsecase {
   final IHttpClient httpClient;
