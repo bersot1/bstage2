@@ -11,45 +11,52 @@ class TabEventBodyContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: [
-        const BstageTabTitle(
-          title: "Eventos em Destaque",
-          descriptionTab: 'Confira os eventos que estão fazendo o maior sucesso',
-        ),
-        SizedBox(
-          height: 370,
-          child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: premiumEvents.length,
-            itemBuilder: (context, i) {
-              var item = premiumEvents[i];
-              return BstageEventCard(
-                key: ValueKey(item.id),
-                event: item,
-              );
-            },
+    return RefreshIndicator(
+      onRefresh: () async {
+        print('refresh');
+        await Future.delayed(const Duration(seconds: 5));
+        return Future.value(true);
+      },
+      child: ListView(
+        children: [
+          const BstageTabTitle(
+            title: "Eventos em Destaque",
+            descriptionTab: 'Confira os eventos que estão fazendo o maior sucesso',
           ),
-        ),
-        const SizedBox(height: 20),
-        const BstageTabTitle(
-          title: "Eventos da Semana",
-          descriptionTab: 'Confira os eventos que estão fazendo o maior sucesso',
-        ),
-        SizedBox(
-          height: 250,
-          child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: premiumEvents.length,
-            itemBuilder: (context, i) {
-              var item = premiumEvents[i];
-              return BstageEventCard(
-                event: item,
-              );
-            },
+          SizedBox(
+            height: 370,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: premiumEvents.length,
+              itemBuilder: (context, i) {
+                var item = premiumEvents[i];
+                return BstageEventCard(
+                  key: ValueKey(item.id),
+                  event: item,
+                );
+              },
+            ),
           ),
-        ),
-      ],
+          const SizedBox(height: 20),
+          const BstageTabTitle(
+            title: "Eventos da Semana",
+            descriptionTab: 'Confira os eventos que estão fazendo o maior sucesso',
+          ),
+          SizedBox(
+            height: 250,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: premiumEvents.length,
+              itemBuilder: (context, i) {
+                var item = premiumEvents[i];
+                return BstageEventCard(
+                  event: item,
+                );
+              },
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

@@ -28,7 +28,8 @@ class BstageEventCard extends StatelessWidget {
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
-              height: 0.138 * _height,
+              margin: EdgeInsets.zero,
+              height: 0.12 * _height,
               width: 0.8 * _width,
               decoration: BoxDecoration(
                 borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(20)),
@@ -46,7 +47,7 @@ class BstageEventCard extends StatelessWidget {
             child: BstageDateSection(event: event),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 14, right: 16, bottom: 30),
+            padding: const EdgeInsets.only(left: 14, right: 16, bottom: 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.end,
@@ -63,18 +64,18 @@ class BstageEventCard extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 8),
+                const SizedBox(height: 5),
                 Text(
                   BstageCategoryName.getNameCategory(event.idCategory),
                   style: Theme.of(context).textTheme.headline5!.copyWith(fontSize: 14),
                 ),
-                const SizedBox(height: 8),
+                const SizedBox(height: 5),
                 SizedBox(
                   width: 0.55 * MediaQuery.of(context).size.width,
                   child: Text(
                     event.description,
                     overflow: TextOverflow.ellipsis,
-                    maxLines: 3,
+                    maxLines: 1,
                     style: Theme.of(context).textTheme.headline5!.copyWith(fontSize: 14),
                   ),
                 ),

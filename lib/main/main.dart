@@ -39,13 +39,19 @@ class _MyAppState extends State<MyApp> {
         providers: [
           Provider<RootPageBloc>(create: (_) => RootPageBloc()),
           Provider<TabEventBloc>(create: (_) => TabEventBloc(eventUsecases: EventUsecaseMock())),
+          Provider<TabInvitationBloc>(
+            create: (_) => TabInvitationBloc(
+              inviteUsecase: InviteUsecaseMock(),
+              userLocalUsecase: UserLocalUsecaseMock(),
+            ),
+          ),
         ],
         child: MaterialApp.router(
           supportedLocales: const [
             Locale('pt', 'BR'),
             Locale('en', 'US'),
           ],
-          theme: makeAppTheme(),
+          theme: MakeThemeData.makeAppTheme(),
           title: 'BStage',
           routeInformationParser: _router.routeInformationParser,
           routerDelegate: _router.routerDelegate,

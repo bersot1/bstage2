@@ -1,7 +1,9 @@
 import 'package:bstage2/ui/components/_bkp/style.dart';
 import 'package:bstage2/ui/pages/home/home.dart';
 import 'package:bstage2/ui/pages/home/tab_profile/tab_profile_page.dart';
+import 'package:bstage2/ui/ui.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/src/provider.dart';
 
 class RootPage extends StatefulWidget {
   const RootPage({Key? key}) : super(key: key);
@@ -13,12 +15,17 @@ class RootPage extends StatefulWidget {
 class _RootPageState extends State<RootPage> with SingleTickerProviderStateMixin {
   late RootPageBloc bloc;
 
+  late TabEventBloc _tabEventBloc;
+  late TabInvitationBloc _tabInvitationBloc;
+
   late int _selectedIndexTab;
 
   @override
   void initState() {
     super.initState();
     _selectedIndexTab = 0;
+    _tabEventBloc = context.read<TabEventBloc>();
+    _tabInvitationBloc = context.read<TabInvitationBloc>();
   }
 
   @override
@@ -52,12 +59,12 @@ class _RootPageState extends State<RootPage> with SingleTickerProviderStateMixin
               Row(
                 children: [
                   _buildTabButton(Icons.home, "Home", () => changesTab(0), _selectedIndexTab == 0),
-                  _buildTabButton(Icons.airplane_ticket, "Convites", () => changesTab(1), _selectedIndexTab == 1),
+                  _buildTabButton(Icons.event, "Convites", () => changesTab(1), _selectedIndexTab == 1),
                 ],
               ),
               Row(
                 children: [
-                  _buildTabButton(Icons.car_rental, "Backstage", () => changesTab(2), _selectedIndexTab == 2),
+                  _buildTabButton(Icons.my_library_books, "Backstage", () => changesTab(2), _selectedIndexTab == 2),
                   _buildTabButton(Icons.person, "Perfil", () => changesTab(3), _selectedIndexTab == 3),
                 ],
               ),
@@ -65,13 +72,18 @@ class _RootPageState extends State<RootPage> with SingleTickerProviderStateMixin
           ),
         ),
       ),
-      body: IndexedStack(
-        index: _selectedIndexTab,
-        children: const [
-          TabEventsPage(),
-          TabBackstagePage(),
-          TabInvitationsPage(),
-          TabProfilePage(),
+      body: Stack(
+        children: [
+          const BstageBackground(),
+          IndexedStack(
+            index: _selectedIndexTab,
+            children: [
+              TabEventsPage(bloc: _tabEventBloc),
+              TabInvitationsPage(bloc: _tabInvitationBloc),
+              TabBackstagePage(),
+              TabProfilePage(),
+            ],
+          ),
         ],
       ),
     );

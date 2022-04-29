@@ -37,7 +37,7 @@ class EventUsecaseMock implements IEventUsecases {
   }
 
   @override
-  Future<List<EventEntity>> getPublics({required String page, String perPage = '1'}) {
+  Future<List<EventEntity>> getPublics({required String page, String perPage = '1'}) async {
     List<EventEntity> events = [];
     events = [
       EventsFactory.makeEventEntity(),
@@ -47,6 +47,8 @@ class EventUsecaseMock implements IEventUsecases {
       EventsFactory.makeEventEntity(),
       EventsFactory.makeEventEntity(),
     ];
+    await Future.delayed(Duration(seconds: 1));
     return Future.value(events);
+    // throw Exception();
   }
 }
