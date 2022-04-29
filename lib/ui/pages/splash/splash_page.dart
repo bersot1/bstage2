@@ -1,7 +1,7 @@
 import 'package:bstage2/main/routers.dart';
+import 'package:bstage2/ui/components/_bkp/style.dart';
 import 'package:bstage2/ui/pages/splash/bloc/splash_page_bloc.dart';
 import 'package:bstage2/ui/pages/splash/bloc/splash_page_event.dart';
-import 'package:bstage2/ui/themes/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';

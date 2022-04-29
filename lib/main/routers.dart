@@ -13,7 +13,7 @@ class Routes {
   }) =>
       GoRoute(path: path, builder: (BuildContext context, GoRouterState state) => page);
 
-  static GoRouter makeRoutes(BuildContext context) => GoRouter(
+  static GoRouter makeRoutes() => GoRouter(
         routes: [
           // routerbuilder(path: Routes.initial, page: makeSplashPage()),
           // routerbuilder(path: Routes.login, page: makeLoginPage()),

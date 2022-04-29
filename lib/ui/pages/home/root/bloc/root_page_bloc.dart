@@ -13,5 +13,6 @@ class RootPageBloc extends Bloc<IRootPageEvent, RootPageTabsState> {
     if (event is RootPageTabEventEvent) emit(RootPageTabsState(NavbarItem.event, 0));
     if (event is RootPageTabInvitationsEvent) emit(RootPageTabsState(NavbarItem.invitation, 1));
     if (event is RootPageTabBackstageEvent) emit(RootPageTabsState(NavbarItem.backstage, 2));
+    if (event is RootPageTabProfileEvent) emit(RootPageTabsState(NavbarItem.profile, 3));
   }
 }

@@ -1,4 +1,4 @@
-import 'package:bstage2/ui/themes/theme.dart';
+import 'package:bstage2/ui/components/_bkp/theme.dart';
 import 'package:flutter/material.dart';
 
 /// ----------------------------------------------

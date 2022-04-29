@@ -1,4 +1,4 @@
-enum NavbarItem { event, backstage, invitation }
+enum NavbarItem { event, backstage, invitation, profile }
 
 class RootPageTabsState {
   final NavbarItem navbarItem;

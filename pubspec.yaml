@@ -23,6 +23,7 @@ dependencies:
   flare_flutter: ^3.0.2
   flutter_svg: ^1.0.3
   simple_animations: ^4.0.1
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:

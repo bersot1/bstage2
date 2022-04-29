@@ -1,5 +1,5 @@
+import 'package:bstage2/ui/components/_bkp/style.dart';
 import 'package:bstage2/ui/components/bstage/bstage_logo.dart';
-import 'package:bstage2/ui/themes/themes.dart';
 import 'package:flutter/material.dart';
 
 class BstageIcon extends StatelessWidget {

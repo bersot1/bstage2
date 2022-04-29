@@ -1,4 +1,4 @@
-import 'package:bstage2/ui/themes/themes.dart';
+import 'package:bstage2/ui/components/_bkp/style.dart';
 import 'package:flutter/material.dart';
 
 class BstageBackground extends StatelessWidget {
