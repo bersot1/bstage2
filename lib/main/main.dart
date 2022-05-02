@@ -47,6 +47,7 @@ class _MyAppState extends State<MyApp> {
           ),
         ],
         child: MaterialApp.router(
+          debugShowCheckedModeBanner: false,
           supportedLocales: const [
             Locale('pt', 'BR'),
             Locale('en', 'US'),

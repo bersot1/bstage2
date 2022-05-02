@@ -1,4 +1,5 @@
 import 'package:bstage2/domain/domain.dart';
+import 'package:bstage2/ui/ui.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -100,7 +101,7 @@ class BstageDateSection extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
       decoration: BoxDecoration(
-        color: event.isActive ? Theme.of(context).primaryColor.withOpacity(.6) : Colors.red.withOpacity(.6),
+        color: event.isActive ? MakeThemeData.secundaryColorLight : Colors.red.withOpacity(.6),
         borderRadius: BorderRadius.circular(20.0),
         boxShadow: const [
           BoxShadow(

@@ -59,4 +59,36 @@ class EventUsecase implements IEventUsecases {
       throw DomainError.unexpected;
     }
   }
+
+  @override
+  Future<List<EventEntity>> getAll({String? sort, String? filter}) async {
+    try {
+      List<EventEntity> result = [];
+      final params = getParams('', null, null, sort, filter);
+      final httpResponse = await client.get('Eventos/All$params') as List;
+      result = httpResponse.map((json) => EventModel.fromJson(json).toEntity()).toList();
+      return result;
+    } catch (e) {
+      throw DomainError.unexpected;
+    }
+  }
+
+  String getParams(param, page, perPage, sort, filter) {
+    if (page != null || perPage != null || sort != null || filter != null) {
+      param = "?";
+      if (page != null) {
+        param += 'page=' + page;
+      }
+      if (perPage != null) {
+        param += '&per_page=' + perPage;
+      }
+      if (sort != null) {
+        param += '&sort=' + sort;
+      }
+      if (filter != null) {
+        param += '&filter=' + filter;
+      }
+    }
+    return param ?? "";
+  }
 }

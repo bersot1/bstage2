@@ -1,4 +1,5 @@
 import 'package:bstage2/domain/domain.dart';
+import 'package:bstage2/ui/components/app_theme.dart';
 import 'package:bstage2/ui/pages/home/components/bstage_category_name.dart';
 import 'package:bstage2/ui/pages/home/components/components.dart';
 import 'package:flutter/material.dart';
@@ -29,12 +30,15 @@ class BstageEventCard extends StatelessWidget {
             alignment: Alignment.bottomCenter,
             child: Container(
               margin: EdgeInsets.zero,
-              height: 0.12 * _height,
+              height: 0.11 * _height,
               width: 0.8 * _width,
               decoration: BoxDecoration(
                 borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(20)),
                 gradient: LinearGradient(
-                  colors: [Colors.transparent, Theme.of(context).primaryColor],
+                  colors: [
+                    Colors.transparent,
+                    MakeThemeData.secundaryColorLight,
+                  ],
                   begin: Alignment.bottomRight,
                   end: Alignment.bottomLeft,
                 ),
@@ -59,7 +63,7 @@ class BstageEventCard extends StatelessWidget {
                     child: Text(
                       event.name,
                       overflow: TextOverflow.ellipsis,
-                      maxLines: 3,
+                      maxLines: 1,
                       style: Theme.of(context).textTheme.headline5,
                     ),
                   ),

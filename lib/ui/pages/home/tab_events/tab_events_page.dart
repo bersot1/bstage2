@@ -1,6 +1,7 @@
 import 'package:bstage2/ui/pages/home/home.dart';
 import 'package:bstage2/ui/pages/home/tab_events/components/components.dart';
 import 'package:bstage2/ui/pages/home/tab_events/components/tab_event_body_content.dart';
+import 'package:bstage2/ui/ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -36,6 +37,12 @@ class _TabEventsPageState extends State<TabEventsPage> {
             return TabEventBodyContent(
               publicEvents: state.publicEvents,
               premiumEvents: state.premiumEvents,
+            );
+          }
+
+          if (state is TabEventSearchEventState) {
+            return Column(
+              children: [],
             );
           }
 

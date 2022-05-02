@@ -19,6 +19,12 @@ class TabEventSuccessState extends Equatable implements ITabEventState {
 
 class TabEventErrorState implements ITabEventState {}
 
+class TabEventSearchEventState implements ITabEventState {
+  final List<EventEntity> result;
+
+  TabEventSearchEventState(this.result);
+}
+
 // ############ Tab Event More Public Event By Page
 
 class TabEventLoadingMorePublicEventState implements ITabEventState {}

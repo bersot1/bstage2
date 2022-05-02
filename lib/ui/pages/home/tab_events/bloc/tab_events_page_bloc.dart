@@ -7,7 +7,11 @@ class TabEventBloc extends Bloc<ITabEventEvents, ITabEventState> {
   TabEventBloc({required this.eventUsecases}) : super(TabEventLoadingState()) {
     on<TabEventsGetDataEvent>(getAllData);
     on<TabEventsGetMorePublicEventByPage>(getMorePublicsEventsByPage);
+    on<TabEventsSearchEventsEvent>(searchEvents);
   }
+
+  late List<EventEntity> _publicEvents;
+  late List<EventEntity> _premiumEvents;
 
   Future<void> getAllData(
     TabEventsGetDataEvent event,
@@ -15,9 +19,9 @@ class TabEventBloc extends Bloc<ITabEventEvents, ITabEventState> {
   ) async {
     try {
       emit(TabEventLoadingState());
-      final premiumEvents = await getPremiumEvent();
-      final publicEvents = await getPublicEvent();
-      emit(TabEventSuccessState(publicEvents: publicEvents, premiumEvents: premiumEvents));
+      _premiumEvents = await getPremiumEvent();
+      _publicEvents = await getPublicEvent();
+      emit(TabEventSuccessState(publicEvents: _publicEvents, premiumEvents: _premiumEvents));
     } catch (_) {
       emit(TabEventErrorState());
     }
@@ -33,10 +37,22 @@ class TabEventBloc extends Bloc<ITabEventEvents, ITabEventState> {
       if (publicEvent.isEmpty) {
         emit(TabEventNoMorePublicEventState());
       } else {
-        emit(TabEventSuccessMorePublicEventState(publicEvents: publicEvent));
+        _publicEvents += publicEvent;
+        emit(TabEventSuccessMorePublicEventState(publicEvents: _publicEvents));
       }
     } catch (_) {
       emit(TabEventErrorMorePublicEventState());
+    }
+  }
+
+  Future<void> searchEvents(
+    TabEventsSearchEventsEvent event,
+    Emitter<ITabEventState> emit,
+  ) async {
+    if (event.value.isEmpty) {
+      TabEventSuccessState(publicEvents: _publicEvents, premiumEvents: _premiumEvents);
+    } else {
+      emit(TabEventSearchEventState([]));
     }
   }
 

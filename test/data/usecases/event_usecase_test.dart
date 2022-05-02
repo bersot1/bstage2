@@ -146,4 +146,39 @@ void main() {
       expect(response, throwsA(DomainError.unexpected));
     });
   });
+
+  group('EventUsecase - GetAll', () {
+    setUp(() {});
+    test('Should call httpClient with correct values when no params', () async {
+      await sut.getAll();
+
+      verify(() => httpClient.get('Eventos/All'));
+    });
+
+    test('Should call httpClient with correct values with filter', () async {
+      await sut.getAll(filter: 'any');
+
+      verify(() => httpClient.get('Eventos/All?&filter=any'));
+    });
+
+    test('Should return List<EventEntity> when success without filter', () async {
+      final result = await sut.getAll();
+
+      expect(result, isA<List<EventEntity>>());
+    });
+
+    test('Should return List<EventEntity> when success with filter', () async {
+      final result = await sut.getAll(filter: 'any');
+
+      expect(result, isA<List<EventEntity>>());
+    });
+
+    test('Should return DomainUnexpected when errors', () async {
+      httpClient.mockRequestGetError(HttpError.serverError);
+
+      final result = sut.getAll(filter: 'any');
+
+      expect(result, throwsA(DomainError.unexpected));
+    });
+  });
 }

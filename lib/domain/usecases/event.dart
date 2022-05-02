@@ -5,4 +5,5 @@ abstract class IEventUsecases {
   Future<List<EventEntity>> getPremiums();
   Future<List<EventEntity>> getPublics({required String page, String perPage});
   Future<List<EventEntity>> getAllEventAsCreatorByUser({required String idUser});
+  Future<List<EventEntity>> getAll({String? sort, String? filter});
 }

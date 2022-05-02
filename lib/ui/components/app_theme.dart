@@ -21,11 +21,16 @@ class MakeThemeData {
     const fontBstage = 'Lato-Regular';
 
     const textTheme = TextTheme(
+      // title appbar
+      headline3: TextStyle(
+        color: whiteColorLight,
+        fontSize: 28,
+      ),
       // TabTitle
       headline4: TextStyle(
         fontSize: 25,
         fontWeight: FontWeight.bold,
-        color: secundaryColor,
+        color: primaryColor,
       ),
       // Event name on Event Card
       headline5: TextStyle(
