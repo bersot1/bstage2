@@ -41,15 +41,7 @@ class LoginPageBloc extends Bloc<ILoginPageEvent, ILoginPageState> {
         emit(LoginWithFacebookError());
       }
     } on DomainError catch (e) {
-      switch (e) {
-        case DomainError.emailInUse:
-          emit(LoginUserAlreadyCreated());
-          //
-          break;
-        default:
-          emit(LoginWithFacebookError());
-          break;
-      }
+      emit(LoginWithFacebookError());
     }
   }
 }
