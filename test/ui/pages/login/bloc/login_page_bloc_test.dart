@@ -6,9 +6,9 @@ import 'package:bstage2/ui/pages/login/bloc/bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-import '../../../domain/factory/params_factory.dart';
-import '../../mocks/mocks.dart';
-import '../../mocks/user_local_usecase_spy.dart';
+import '../../../../domain/factory/params_factory.dart';
+import '../../../mocks/mocks.dart';
+import '../../../mocks/user_local_usecase_spy.dart';
 
 class CreateAccountParamsFake extends Fake implements CreateAccountParams {}
 

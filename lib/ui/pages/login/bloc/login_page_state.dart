@@ -1,11 +1,28 @@
-abstract class ILoginPageState {}
+import 'package:equatable/equatable.dart';
 
-class LoginPageInitialState extends ILoginPageState {}
+abstract class ILoginPageState extends Equatable {}
 
-class LoginWithFacebookSuccess extends ILoginPageState {}
+class LoginPageInitialState extends Equatable implements ILoginPageState {
+  @override
+  List<Object?> get props => [];
+}
 
-class LoginWithFacebookError extends ILoginPageState {}
+class LoginWithFacebookSuccess extends Equatable implements ILoginPageState {
+  @override
+  List<Object?> get props => [];
+}
 
-class LoginUserAlreadyCreated extends ILoginPageState {}
+class LoginWithFacebookError extends Equatable implements ILoginPageState {
+  @override
+  List<Object?> get props => [];
+}
 
-class LoginPageLoading extends ILoginPageState {}
+class LoginUserAlreadyCreated extends Equatable implements ILoginPageState {
+  @override
+  List<Object?> get props => [];
+}
+
+class LoginPageLoading extends Equatable implements ILoginPageState {
+  @override
+  List<Object?> get props => [];
+}
