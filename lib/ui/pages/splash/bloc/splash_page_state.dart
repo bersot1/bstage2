@@ -1,9 +1,23 @@
-abstract class ISplashPageState {}
+import 'package:equatable/equatable.dart';
 
-class SplashPageLoadingState extends ISplashPageState {}
+abstract class ISplashPageState extends Equatable {}
 
-class SplashPageUserLoggedState extends ISplashPageState {}
+class SplashPageLoadingState extends Equatable implements ISplashPageState {
+  @override
+  List<Object?> get props => [];
+}
 
-class SplashPageUserNotFoundState extends ISplashPageState {}
+class SplashPageUserLoggedState extends Equatable implements ISplashPageState {
+  @override
+  List<Object?> get props => [];
+}
 
-class SplashPageUnexpectedErrorState extends ISplashPageState {}
+class SplashPageUserNotFoundState extends Equatable implements ISplashPageState {
+  @override
+  List<Object?> get props => [];
+}
+
+class SplashPageUnexpectedErrorState extends Equatable implements ISplashPageState {
+  @override
+  List<Object?> get props => [];
+}

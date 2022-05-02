@@ -1,3 +1,8 @@
-abstract class ISplashPageEvent {}
+import 'package:equatable/equatable.dart';
 
-class SplashPageStartEvent extends ISplashPageEvent {}
+abstract class ISplashPageEvent extends Equatable {}
+
+class SplashPageStartEvent extends Equatable implements ISplashPageEvent {
+  @override
+  List<Object?> get props => [];
+}
