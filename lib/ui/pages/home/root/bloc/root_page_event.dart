@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-abstract class IRootPageEvent {}
+abstract class IRootPageEvent extends Equatable {}
 
 class RootPageTabEventEvent extends Equatable implements IRootPageEvent {
   @override
