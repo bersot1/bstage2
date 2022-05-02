@@ -21,8 +21,9 @@ class TabEventErrorState implements ITabEventState {}
 
 class TabEventSearchEventState implements ITabEventState {
   final List<EventEntity> result;
+  final String textSearched;
 
-  TabEventSearchEventState(this.result);
+  TabEventSearchEventState({required this.result, required this.textSearched});
 }
 
 // ############ Tab Event More Public Event By Page

@@ -22,8 +22,8 @@ class EventEntity extends Equatable {
 
   const EventEntity({
     required this.id,
-    required this.register,
     required this.isActive,
+    required this.register,
     required this.name,
     required this.description,
     this.highlightedUntil,
@@ -42,6 +42,8 @@ class EventEntity extends Equatable {
   @override
   List<Object?> get props => [
         id,
+        isActive,
+        register,
         name,
         description,
         highlightedUntil,

@@ -1,10 +1,7 @@
 import 'package:bstage2/domain/domain.dart';
-import 'package:bstage2/ui/components/search_bar_with_animation.dart';
 import 'package:bstage2/ui/pages/home/components/bstage_tab_title.dart';
 import 'package:bstage2/ui/pages/home/components/components.dart';
-import 'package:bstage2/ui/ui.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/src/provider.dart';
 
 class TabEventBodyContent extends StatefulWidget {
   final List<EventEntity> publicEvents;
@@ -21,41 +18,21 @@ class TabEventBodyContent extends StatefulWidget {
 }
 
 class _TabEventBodyContentState extends State<TabEventBodyContent> {
-  late TabEventBloc _tabEventBloc;
-
   List<EventEntity> get _publicEvents => widget.publicEvents;
   List<EventEntity> get _premiumEvents => widget.premiumEvents;
-  List<EventEntity> get _allEvents => widget.premiumEvents + widget.publicEvents;
 
   @override
   void initState() {
     super.initState();
-    _tabEventBloc = context.read<TabEventBloc>();
   }
 
   @override
   Widget build(BuildContext context) {
-    return RefreshIndicator(
-      onRefresh: () async {
-        print('refresh');
-        await Future.delayed(const Duration(seconds: 5));
-        return Future.value(true);
-      },
+    return Expanded(
       child: ListView(
+        padding: EdgeInsets.only(top: 10),
         children: [
-          BstageSearchBar(onchanged: (value) {
-            print(value);
-            _tabEventBloc.add(
-              TabEventsSearchEventsEvent(
-                events: _allEvents,
-                value: value,
-              ),
-            );
-          }),
-          const SizedBox(
-            height: 10,
-          ),
-          BstageTabTitle(
+          const BstageTabTitle(
             title: "Eventos em Destaque",
             descriptionTab: 'Confira os eventos que estão fazendo o maior sucesso',
           ),
@@ -67,7 +44,6 @@ class _TabEventBodyContentState extends State<TabEventBodyContent> {
               itemBuilder: (context, i) {
                 var item = _premiumEvents[i];
                 return BstageEventCard(
-                  key: ValueKey(item.id),
                   event: item,
                 );
               },
@@ -82,9 +58,9 @@ class _TabEventBodyContentState extends State<TabEventBodyContent> {
             height: 250,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: _premiumEvents.length,
+              itemCount: _publicEvents.length,
               itemBuilder: (context, i) {
-                var item = _premiumEvents[i];
+                var item = _publicEvents[i];
                 return BstageEventCard(
                   event: item,
                 );

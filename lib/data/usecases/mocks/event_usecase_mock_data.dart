@@ -63,7 +63,7 @@ class EventUsecaseMock implements IEventUsecases {
       EventsFactory.makeEventEntity(),
       EventsFactory.makeEventEntity(),
     ];
-    await Future.delayed(Duration(seconds: 3));
+    await Future.delayed(const Duration(seconds: 1));
     return Future.value(events);
   }
 }

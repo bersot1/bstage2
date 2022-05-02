@@ -9,6 +9,8 @@ main() {
 
     expect(event.props, [
       event.id,
+      event.isActive,
+      event.register,
       event.name,
       event.description,
       event.highlightedUntil,

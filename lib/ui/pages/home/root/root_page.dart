@@ -43,10 +43,13 @@ class _RootPageState extends State<RootPage> with SingleTickerProviderStateMixin
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.add),
-        backgroundColor: orangeColor,
-        onPressed: () {},
+      floatingActionButton: Visibility(
+        visible: MediaQuery.of(context).viewInsets.bottom == 0.0,
+        child: FloatingActionButton(
+          child: const Icon(Icons.add),
+          backgroundColor: orangeColor,
+          onPressed: () {},
+        ),
       ),
       bottomNavigationBar: BottomAppBar(
         clipBehavior: Clip.antiAlias,

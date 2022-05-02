@@ -8,6 +8,10 @@ class TabEventBloc extends Bloc<ITabEventEvents, ITabEventState> {
     on<TabEventsGetDataEvent>(getAllData);
     on<TabEventsGetMorePublicEventByPage>(getMorePublicsEventsByPage);
     on<TabEventsSearchEventsEvent>(searchEvents);
+    on<TabEventCloseSearchState>(closeSearchEvent);
+
+    _publicEvents = [];
+    _premiumEvents = [];
   }
 
   late List<EventEntity> _publicEvents;
@@ -50,10 +54,21 @@ class TabEventBloc extends Bloc<ITabEventEvents, ITabEventState> {
     Emitter<ITabEventState> emit,
   ) async {
     if (event.value.isEmpty) {
-      TabEventSuccessState(publicEvents: _publicEvents, premiumEvents: _premiumEvents);
+      emit(TabEventSuccessState(publicEvents: _publicEvents, premiumEvents: _premiumEvents));
     } else {
-      emit(TabEventSearchEventState([]));
+      if (event.value.length > 3) {
+        emit(TabEventLoadingState());
+        final response = await eventUsecases.getAll(filter: event.value);
+        emit(TabEventSearchEventState(result: response, textSearched: event.value));
+      }
     }
+  }
+
+  void closeSearchEvent(
+    TabEventCloseSearchState event,
+    Emitter<ITabEventState> emit,
+  ) {
+    emit(TabEventSuccessState(publicEvents: _publicEvents, premiumEvents: _premiumEvents));
   }
 
   Future<List<EventEntity>> getPublicEvent({String page = '1'}) async {
