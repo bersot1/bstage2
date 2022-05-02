@@ -1,9 +1,23 @@
+import 'package:equatable/equatable.dart';
+
 abstract class IRootPageEvent {}
 
-class RootPageTabEventEvent implements IRootPageEvent {}
+class RootPageTabEventEvent extends Equatable implements IRootPageEvent {
+  @override
+  List<Object?> get props => [];
+}
 
-class RootPageTabBackstageEvent implements IRootPageEvent {}
+class RootPageTabBackstageEvent extends Equatable implements IRootPageEvent {
+  @override
+  List<Object?> get props => [];
+}
 
-class RootPageTabInvitationsEvent implements IRootPageEvent {}
+class RootPageTabInvitationsEvent extends Equatable implements IRootPageEvent {
+  @override
+  List<Object?> get props => [];
+}
 
-class RootPageTabProfileEvent implements IRootPageEvent {}
+class RootPageTabProfileEvent extends Equatable implements IRootPageEvent {
+  @override
+  List<Object?> get props => [];
+}
