@@ -21,6 +21,13 @@ class MakeThemeData {
     const fontBstage = 'Lato-Regular';
 
     const textTheme = TextTheme(
+      headline2: TextStyle(
+        color: secundaryColor,
+        fontSize: 30,
+        fontWeight: FontWeight.bold,
+        // fontFamily: 'Gotham-Medium',
+      ),
+
       // title appbar
       headline3: TextStyle(
         color: whiteColorLight,
@@ -37,6 +44,11 @@ class MakeThemeData {
         fontSize: 20,
         fontWeight: FontWeight.bold,
         color: whiteColor,
+      ),
+      headline6: TextStyle(
+        fontSize: 18,
+        color: MakeThemeData.secundaryColorLight,
+        fontWeight: FontWeight.normal,
       ),
       caption: TextStyle(
         fontSize: 16,

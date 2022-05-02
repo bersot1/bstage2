@@ -1,6 +1,4 @@
-import 'package:bstage2/ui/components/bstage/bstage_background.dart';
-import 'package:bstage2/ui/components/bstage/bstage_icon.dart';
-import 'package:bstage2/ui/components/bstage/bstage_police_text.dart';
+import 'package:bstage2/ui/components/components.dart';
 import 'package:bstage2/ui/pages/login/bloc/login_page_bloc.dart';
 import 'package:flutter/material.dart';
 
