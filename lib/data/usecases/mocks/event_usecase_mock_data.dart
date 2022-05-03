@@ -4,7 +4,6 @@ import 'package:bstage2/mock_data/event_entity_factory.dart';
 class EventUsecaseMock implements IEventUsecases {
   @override
   Future<bool> create(CreateEventParams param) {
-    // TODO: implement create
     throw UnimplementedError();
   }
 
@@ -47,7 +46,7 @@ class EventUsecaseMock implements IEventUsecases {
       EventsFactory.makeEventEntity(),
       EventsFactory.makeEventEntity(),
     ];
-    await Future.delayed(Duration(seconds: 1));
+    await Future.delayed(const Duration(seconds: 1));
     return Future.value(events);
     // throw Exception();
   }

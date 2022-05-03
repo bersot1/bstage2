@@ -12,8 +12,6 @@ class LoginPageBlocSpy extends MockBloc<ILoginPageEvent, ILoginPageState> implem
 void main() {
   late LoginPageBlocSpy loginPageBloc;
   late MockGoRouter mockGoRouter;
-  late String route;
-  late ILoginPageState loginState;
 
   setUp(() {
     WidgetsFlutterBinding.ensureInitialized();

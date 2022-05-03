@@ -40,7 +40,7 @@ class LoginPageBloc extends Bloc<ILoginPageEvent, ILoginPageState> {
       } else {
         emit(LoginWithFacebookError());
       }
-    } on DomainError catch (e) {
+    } on DomainError catch (_) {
       emit(LoginWithFacebookError());
     }
   }

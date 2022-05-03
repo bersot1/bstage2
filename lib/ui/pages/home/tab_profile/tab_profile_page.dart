@@ -10,7 +10,7 @@ class TabProfilePage extends StatefulWidget {
 class _TabProfilePageState extends State<TabProfilePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       backgroundColor: Colors.transparent,
       body: Center(
         child: Text('profile'),

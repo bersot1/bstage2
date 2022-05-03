@@ -30,7 +30,7 @@ class _TabEventBodyContentState extends State<TabEventBodyContent> {
   Widget build(BuildContext context) {
     return Expanded(
       child: ListView(
-        padding: EdgeInsets.only(top: 10),
+        padding: const EdgeInsets.only(top: 10),
         children: [
           const BstageTabTitle(
             title: "Eventos em Destaque",

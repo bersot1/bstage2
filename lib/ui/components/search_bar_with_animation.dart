@@ -1,9 +1,8 @@
-import 'dart:async';
-
 import 'package:bstage2/ui/components/debouncer.dart';
 import 'package:bstage2/ui/pages/home/home.dart';
 import 'package:bstage2/ui/ui.dart';
 import 'package:flutter/material.dart';
+// ignore: implementation_imports
 import 'package:provider/src/provider.dart';
 
 import 'app_theme.dart';

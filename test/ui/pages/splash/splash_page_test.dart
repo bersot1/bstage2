@@ -17,8 +17,6 @@ class SplashPageBlocSpy extends MockBloc<ISplashPageEvent, ISplashPageState> imp
 void main() {
   late SplashPageBlocSpy bloc;
   late MockGoRouter mockGoRouter;
-  late String route;
-  late ISplashPageState splashState;
 
   setUp(() {
     WidgetsFlutterBinding.ensureInitialized();

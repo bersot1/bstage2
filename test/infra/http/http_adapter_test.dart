@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:bstage2/data/http/http_error.dart';
 import 'package:bstage2/infra/http/http_adapter_dio.dart';
 import 'package:faker/faker.dart';
@@ -12,12 +10,10 @@ void main() {
   late HttpAdapterDio sut;
   late DioSpy client;
   late String url;
-  late File file;
 
   setUp(() {
     client = DioSpy();
     sut = HttpAdapterDio(client);
-    file = File('lib/ui/assets/icon/favicon.png');
   });
 
   setUpAll(() {

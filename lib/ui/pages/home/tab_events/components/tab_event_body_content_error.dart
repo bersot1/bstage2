@@ -1,5 +1,6 @@
 import 'package:bstage2/ui/ui.dart';
 import 'package:flutter/material.dart';
+// ignore: implementation_imports
 import 'package:provider/src/provider.dart';
 
 class TabEventBodyContentError extends StatelessWidget {

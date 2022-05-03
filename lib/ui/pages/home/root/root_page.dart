@@ -1,6 +1,7 @@
 import 'package:bstage2/ui/components/components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+// ignore: implementation_imports
 import 'package:provider/src/provider.dart';
 
 import '../../home/home.dart';
@@ -95,8 +96,8 @@ class _RootPageState extends State<RootPage> with SingleTickerProviderStateMixin
                   children: [
                     TabEventsPage(bloc: _tabEventBloc),
                     TabInvitationsPage(bloc: _tabInvitationBloc),
-                    TabBackstagePage(),
-                    TabProfilePage(),
+                    const TabBackstagePage(),
+                    const TabProfilePage(),
                   ],
                 ),
               ],

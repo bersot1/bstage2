@@ -32,8 +32,8 @@ class BstageEventCard extends StatelessWidget {
               margin: EdgeInsets.zero,
               height: 0.11 * _height,
               width: 0.8 * _width,
-              decoration: BoxDecoration(
-                borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(20)),
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20)),
                 gradient: LinearGradient(
                   colors: [
                     Colors.transparent,

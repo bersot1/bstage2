@@ -18,7 +18,7 @@ class BstageDateSection extends StatelessWidget {
     var diaFim = DateFormat('d').format(event.end).toString();
     var difDate = DateTime.now().difference(event.end).inDays;
 
-    var finalInformation;
+    Widget finalInformation;
     bool isVanquished = false;
     if (difDate > 0) {
       isVanquished = true;
@@ -74,13 +74,12 @@ class BstageDateSection extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(width: 10),
-            Container(
+            const SizedBox(width: 10),
+            const SizedBox(
               width: 1,
               height: 30,
-              color: Theme.of(context).textSelectionColor.withOpacity(.3),
             ),
-            SizedBox(width: 10),
+            const SizedBox(width: 10),
             Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
@@ -99,7 +98,7 @@ class BstageDateSection extends StatelessWidget {
       }
     }
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
       decoration: BoxDecoration(
         color: event.isActive ? MakeThemeData.secundaryColorLight : Colors.red.withOpacity(.6),
         borderRadius: BorderRadius.circular(20.0),
@@ -128,12 +127,12 @@ class BstageDateEvent extends StatelessWidget {
     var diaFim = DateFormat('d').format(event.end).toString();
     var difDate = DateTime.now().difference(event.end).inDays;
 
-    var mouthStartPtBr = DateFormat("MMM", "pt_BR").format(event.end);
-    var endDay = "$diaFim $mouthStartPtBr".toUpperCase();
+    // var mouthStartPtBr = DateFormat("MMM", "pt_BR").format(event.end);
+    // var endDay = "$diaFim $mouthStartPtBr".toUpperCase();
     var mouthEndPtBr = DateFormat("MMM", "pt_BR").format(event.start);
     var startDay = "$diaInicio $mouthEndPtBr".toUpperCase();
 
-    var finalInformation;
+    Widget finalInformation;
     bool isVanquished = false;
     if (difDate > 0) {
       isVanquished = true;
@@ -170,11 +169,11 @@ class BstageDateEvent extends StatelessWidget {
           children: <Widget>[
             Text(startDay),
             const SizedBox(height: 3),
-            Container(
+            const SizedBox(
               width: 30,
               height: 1,
             ),
-            SizedBox(height: 3),
+            const SizedBox(height: 3),
           ],
         );
       }

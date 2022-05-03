@@ -7,13 +7,11 @@ class BstageTabAvatarProfile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var _defaultUser = 'lib/app/assets/icon/pngs/default-user.png';
-
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         CircleAvatar(backgroundImage: NetworkImage(urlPicture)),
-        Text('Perfil'),
+        const Text('Perfil'),
       ],
     );
 
