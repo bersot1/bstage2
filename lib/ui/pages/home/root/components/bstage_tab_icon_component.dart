@@ -1,4 +1,4 @@
-import 'package:bstage2/ui/components/_bkp/style.dart';
+import 'package:bstage2/ui/ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -15,7 +15,7 @@ class BstageTabIcon extends StatelessWidget {
         height: 50.0,
         width: 50.0,
         allowDrawingOutsideViewBox: true,
-        color: orangeColor,
+        color: MakeThemeData.primaryColor,
       ),
     );
   }

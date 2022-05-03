@@ -1,4 +1,4 @@
-import 'package:bstage2/ui/components/_bkp/style.dart';
+import 'package:bstage2/ui/ui.dart';
 import 'package:flutter/material.dart';
 
 class BstageBackground extends StatelessWidget {
@@ -22,7 +22,7 @@ class BstageBackground extends StatelessWidget {
                 duration: const Duration(milliseconds: 50),
                 decoration: BoxDecoration(
                   border: Border.all(color: Colors.transparent),
-                  color: lightSoftColor,
+                  color: MakeThemeData.whiteColorLight,
                   shape: BoxShape.circle,
                 ),
               ),
@@ -37,7 +37,7 @@ class BstageBackground extends StatelessWidget {
                 width: width * 0.6,
                 decoration: const BoxDecoration(
                   shape: BoxShape.circle,
-                  color: lightSoftColor,
+                  color: MakeThemeData.whiteColorLight,
                 ),
               ),
             ),

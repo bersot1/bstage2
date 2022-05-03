@@ -1,7 +1,7 @@
 import 'package:bstage2/main/routers.dart';
-import 'package:bstage2/ui/components/_bkp/style.dart';
 import 'package:bstage2/ui/pages/splash/bloc/splash_page_bloc.dart';
 import 'package:bstage2/ui/pages/splash/bloc/splash_page_event.dart';
+import 'package:bstage2/ui/ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -21,11 +21,9 @@ class _SplashPageState extends State<SplashPage> {
   void initState() {
     super.initState();
     verifyUserLogged();
-    debugPrint("##### Splash - Bloc Start ######");
   }
 
   verifyUserLogged() async {
-    // await Future.delayed(Duration(seconds: 3));
     widget.bloc.add(SplashPageStartEvent());
   }
 
@@ -47,13 +45,12 @@ class _SplashPageState extends State<SplashPage> {
   void dispose() {
     super.dispose();
     widget.bloc.close();
-    debugPrint("##### Splash - Bloc Close ###### PAGE");
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: orangeColor,
+      backgroundColor: MakeThemeData.primaryColor,
       body: BlocBuilder<SplashPageBloc, ISplashPageState>(
         bloc: widget.bloc,
         builder: (context, state) {
