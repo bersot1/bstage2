@@ -5,9 +5,9 @@ import 'package:bstage2/ui/pages/splash/bloc/splash_page_event.dart';
 import 'package:bstage2/ui/pages/splash/bloc/splash_page_state.dart';
 import 'package:bstage2/ui/pages/splash/splash_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:provider/provider.dart';
 
 import '../../helpers/make_page.dart';
 import '../../mocks/mock_go_router.dart';
@@ -26,6 +26,15 @@ void main() {
     mockGoRouter = MockGoRouter();
   });
 
+  Future<void> _makePageSplash(WidgetTester tester) async {
+    await makePage(
+      tester: tester,
+      blocs: [Provider<SplashPageBloc>(create: (context) => bloc)],
+      home: SplashPage(bloc: bloc),
+      goRouter: mockGoRouter,
+    );
+  }
+
   <String, ISplashPageState>{
     Routes.home: SplashPageUserLoggedState(),
     Routes.login: SplashPageUnexpectedErrorState(),
@@ -36,13 +45,7 @@ void main() {
       (tester) async {
         when(() => bloc.state).thenReturn(splashState);
 
-        await tester.pumpWidget(
-          makePage(
-            blocs: [BlocProvider(create: (context) => bloc)],
-            home: SplashPage(bloc: bloc),
-            goRouter: mockGoRouter,
-          ),
-        );
+        await _makePageSplash(tester);
 
         verify(() => mockGoRouter.go(route)).called(1);
       },

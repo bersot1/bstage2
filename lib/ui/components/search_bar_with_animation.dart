@@ -18,9 +18,8 @@ class BstageSearchBar extends StatefulWidget {
 
 class _BstageSearchBarState extends State<BstageSearchBar> {
   final _focusTextFormField = FocusNode();
+  final Debouncer _debouncer = Debouncer();
 
-  late Timer? _debounce;
-  late Debouncer _debouncer;
   late TextEditingController _controllerTextSearch;
 
   late bool iconSearch = true;
@@ -29,18 +28,15 @@ class _BstageSearchBarState extends State<BstageSearchBar> {
   void initState() {
     super.initState();
     _controllerTextSearch = TextEditingController();
-    _debouncer = Debouncer();
     _focusTextFormField.addListener(_onFocusChange);
   }
 
   @override
   void dispose() {
     super.dispose();
-    _debounce!.cancel();
   }
 
   void _onFocusChange() {
-    debugPrint("Focus: ${_focusTextFormField.hasFocus.toString()}");
     if (_focusTextFormField.hasFocus) {
       iconSearch = false;
     } else {

@@ -37,7 +37,6 @@ class _MyAppState extends State<MyApp> {
       initializeDateFormatting('pt_BR');
       return MultiProvider(
         providers: [
-          Provider<RootPageBloc>(create: (_) => RootPageBloc()),
           Provider<TabEventBloc>(create: (_) => TabEventBloc(eventUsecases: EventUsecaseMock())),
           Provider<TabInvitationBloc>(
             create: (_) => TabInvitationBloc(

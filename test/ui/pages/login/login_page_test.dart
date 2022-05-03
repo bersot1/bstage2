@@ -1,8 +1,8 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:bstage2/ui/ui.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:provider/provider.dart';
 
 import '../../helpers/make_page.dart';
 import '../../mocks/mock_go_router.dart';
@@ -21,15 +21,17 @@ void main() {
     mockGoRouter = MockGoRouter();
   });
 
-  testWidgets('testing BstagePoliceText', (tester) async {
-    await tester.pumpWidget(
-      makePage(
-        blocs: [BlocProvider(create: (context) => loginPageBloc)],
-        home: LoginPage(bloc: loginPageBloc),
-        goRouter: mockGoRouter,
-      ),
+  Future<void> _makePageLogin(WidgetTester tester) async {
+    await makePage(
+      tester: tester,
+      blocs: [Provider<LoginPageBloc>(create: (context) => loginPageBloc)],
+      home: LoginPage(bloc: loginPageBloc),
+      goRouter: mockGoRouter,
     );
+  }
 
+  testWidgets('testing BstagePoliceText', (tester) async {
+    await _makePageLogin(tester);
     final textBemVindoBstageFind = find.text('Bem vindo ao BStage');
     Text propTextBemVindoBstageFind = tester.firstWidget(textBemVindoBstageFind);
 
@@ -51,13 +53,7 @@ void main() {
   });
 
   testWidgets('Button', (tester) async {
-    await tester.pumpWidget(
-      makePage(
-        blocs: [BlocProvider(create: (context) => loginPageBloc)],
-        home: LoginPage(bloc: loginPageBloc),
-        goRouter: mockGoRouter,
-      ),
-    );
+    await _makePageLogin(tester);
 
     final findFbButton = find.text('Entrar com Facebook');
     final test = find.ancestor(of: findFbButton, matching: find.byType(ElevatedButton));
@@ -66,13 +62,7 @@ void main() {
   });
 
   testWidgets('Find Icon Animation', (tester) async {
-    await tester.pumpWidget(
-      makePage(
-        blocs: [BlocProvider(create: (context) => loginPageBloc)],
-        home: LoginPage(bloc: loginPageBloc),
-        goRouter: mockGoRouter,
-      ),
-    );
+    await _makePageLogin(tester);
 
     final findIcon = find.byType(BstageIcon);
 

@@ -1,13 +1,23 @@
 import 'package:equatable/equatable.dart';
 
-enum NavbarItem { event, backstage, invitation, profile }
+abstract class IRootPageEvent {}
 
-class RootPageTabsState extends Equatable {
-  final NavbarItem navbarItem;
-  final int index;
-
-  const RootPageTabsState(this.navbarItem, this.index);
-
+class RootPageTabEvent extends Equatable implements IRootPageEvent {
   @override
-  List<Object?> get props => [navbarItem, index];
+  List<Object?> get props => [];
+}
+
+class RootPageTabInvitation extends Equatable implements IRootPageEvent {
+  @override
+  List<Object?> get props => [];
+}
+
+class RootPageTabBackstage extends Equatable implements IRootPageEvent {
+  @override
+  List<Object?> get props => [];
+}
+
+class RootPageTabProfile extends Equatable implements IRootPageEvent {
+  @override
+  List<Object?> get props => [];
 }

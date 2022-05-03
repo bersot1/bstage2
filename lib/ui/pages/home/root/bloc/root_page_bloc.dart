@@ -1,18 +1,34 @@
-import 'package:bstage2/ui/pages/home/home.dart';
+import 'package:bstage2/ui/pages/home/root/bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class RootPageBloc extends Bloc<IRootPageEvent, RootPageTabsState> {
-  RootPageBloc() : super(RootPageTabsState(NavbarItem.event, 0)) {
-    on<IRootPageEvent>(_changeTab);
+class RootPageBloc extends Bloc<IRootPageEvent, int> {
+  late int currentIndex;
+
+  RootPageBloc() : super(0) {
+    on<IRootPageEvent>(changeTab);
+
+    currentIndex = 0;
   }
 
-  void _changeTab(
+  void changeTab(
     IRootPageEvent event,
-    Emitter<RootPageTabsState> emit,
+    Emitter<int> emit,
   ) {
-    if (event is RootPageTabEventEvent) emit(RootPageTabsState(NavbarItem.event, 0));
-    if (event is RootPageTabInvitationsEvent) emit(RootPageTabsState(NavbarItem.invitation, 1));
-    if (event is RootPageTabBackstageEvent) emit(RootPageTabsState(NavbarItem.backstage, 2));
-    if (event is RootPageTabProfileEvent) emit(RootPageTabsState(NavbarItem.profile, 3));
+    if (event is RootPageTabEvent) {
+      emit(0);
+      currentIndex = 0;
+    }
+    if (event is RootPageTabInvitation) {
+      emit(1);
+      currentIndex = 1;
+    }
+    if (event is RootPageTabBackstage) {
+      emit(2);
+      currentIndex = 2;
+    }
+    if (event is RootPageTabProfile) {
+      emit(3);
+      currentIndex = 3;
+    }
   }
 }

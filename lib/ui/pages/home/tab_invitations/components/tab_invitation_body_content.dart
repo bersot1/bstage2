@@ -10,6 +10,8 @@ class TabInvitationBodyContent extends StatefulWidget {
 class _TabInvitationBodyContentState extends State<TabInvitationBodyContent> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Center(
+      child: Text('Invitation'),
+    );
   }
 }

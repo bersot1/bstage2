@@ -1,7 +1,6 @@
+import 'package:bstage2/main/factories/pages/home/home.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-
-import 'factories/pages/login/login_page_factory.dart';
 
 class Routes {
   static String initial = '/';
@@ -19,7 +18,7 @@ class Routes {
         routes: [
           // routerbuilder(path: Routes.initial, page: makeSplashPage()),
           // routerbuilder(path: Routes.login, page: makeLoginPage()),
-          routerbuilder(path: Routes.initial, page: makeLoginPage()),
+          routerbuilder(path: Routes.initial, page: makeRootPageFactory()),
         ],
       );
 }

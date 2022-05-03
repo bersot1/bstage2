@@ -13,7 +13,7 @@ class _TabProfilePageState extends State<TabProfilePage> {
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: Center(
-        child: Text('teste'),
+        child: Text('profile'),
       ),
     );
   }

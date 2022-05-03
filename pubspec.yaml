@@ -32,6 +32,7 @@ dev_dependencies:
   mocktail: ^0.3.0
   faker: ^2.0.0
   bloc_test: ^9.0.3
+  network_image_mock: ^2.1.0
 
 
 flutter:
