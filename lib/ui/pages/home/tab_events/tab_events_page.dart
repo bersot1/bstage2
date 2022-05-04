@@ -29,54 +29,56 @@ class _TabEventsPageState extends State<TabEventsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.transparent,
-      body: Column(
-        children: [
-          const SizedBox(
-            height: 50,
-          ),
-          BstageSearchBar(
-            onchanged: (value) {
-              tabEventBloc.add(
-                TabEventsSearchEventsEvent(
-                  value: value,
-                ),
-              );
-            },
-          ),
-          BlocBuilder<TabEventBloc, ITabEventState>(
-            builder: (context, state) {
-              if (state is TabEventSuccessState) {
-                return TabEventBodyContent(
-                  publicEvents: state.publicEvents,
-                  premiumEvents: state.premiumEvents,
-                );
-              }
-
-              if (state is TabEventSearchEventState) {
-                return TabEventBodySearchEventContent(
-                  events: state.result,
-                  textSearched: state.textSearched,
-                );
-              }
-
-              if (state is TabEventLoadingState) {
-                return const Expanded(
-                  child: Center(
-                    child: CircularProgressIndicator(),
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        body: Column(
+          children: [
+            BstageSearchBar(
+              onchanged: (value) {
+                tabEventBloc.add(
+                  TabEventsSearchEventsEvent(
+                    value: value,
                   ),
                 );
-              }
+              },
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            BlocBuilder<TabEventBloc, ITabEventState>(
+              builder: (context, state) {
+                if (state is TabEventSuccessState) {
+                  return TabEventBodyContent(
+                    publicEvents: state.publicEvents,
+                    premiumEvents: state.premiumEvents,
+                  );
+                }
 
-              if (state is TabEventErrorState) {
-                return const TabEventBodyContentError();
-              }
+                if (state is TabEventSearchEventState) {
+                  return TabEventBodySearchEventContent(
+                    events: state.result,
+                    textSearched: state.textSearched,
+                  );
+                }
 
-              return Container();
-            },
-          ),
-        ],
+                if (state is TabEventLoadingState) {
+                  return const Expanded(
+                    child: Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                  );
+                }
+
+                if (state is TabEventErrorState) {
+                  return const TabEventBodyContentError();
+                }
+
+                return Container();
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -1,7 +1,7 @@
 import 'package:bstage2/domain/domain.dart';
 import 'package:bstage2/ui/components/app_theme.dart';
+import 'package:bstage2/ui/components/image_network_loading.dart';
 import 'package:bstage2/ui/pages/home/components/bstage_category_name.dart';
-import 'package:bstage2/ui/pages/home/components/components.dart';
 import 'package:flutter/material.dart';
 
 import 'bstage_date_section.dart';
@@ -12,26 +12,24 @@ class BstageEventCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _height = MediaQuery.of(context).size.height;
-    final _width = MediaQuery.of(context).size.width;
     return Padding(
       padding: const EdgeInsets.all(10.0),
       child: Stack(
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(20),
-            child: BstageFadeImage(
-              height: _height,
-              width: 0.85 * _width,
-              event: event,
+            child: SizedBox(
+              child: ImageNetworkLoading(
+                event: event,
+              ),
             ),
           ),
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
               margin: EdgeInsets.zero,
-              height: 0.11 * _height,
-              width: 0.8 * _width,
+              height: 90,
+              width: 300.0,
               decoration: const BoxDecoration(
                 borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20)),
                 gradient: LinearGradient(
@@ -59,7 +57,7 @@ class BstageEventCard extends StatelessWidget {
                 Material(
                   color: Colors.transparent,
                   child: SizedBox(
-                    width: 0.4 * MediaQuery.of(context).size.width,
+                    width: 150,
                     child: Text(
                       event.name,
                       overflow: TextOverflow.ellipsis,
@@ -75,7 +73,7 @@ class BstageEventCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 5),
                 SizedBox(
-                  width: 0.55 * MediaQuery.of(context).size.width,
+                  width: 206.25,
                   child: Text(
                     event.description,
                     overflow: TextOverflow.ellipsis,

@@ -38,6 +38,7 @@ class _MyAppState extends State<MyApp> {
       return MultiProvider(
         providers: [
           Provider<TabEventBloc>(create: (_) => TabEventBloc(eventUsecases: EventUsecaseMock())),
+          Provider<RootPageBloc>(create: (_) => RootPageBloc()),
           Provider<TabInvitationBloc>(
             create: (_) => TabInvitationBloc(
               inviteUsecase: InviteUsecaseMock(),

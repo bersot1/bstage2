@@ -4,6 +4,27 @@ import 'package:bstage2/ui/pages/home/components/bstage_category_name.dart';
 import 'package:faker/faker.dart';
 
 class EventsFactory {
+  static List<EventEntity> makeEventListToGoldenTest() => [
+        EventEntity(
+          id: faker.guid.guid(),
+          register: faker.date.dateTime(minYear: 2022, maxYear: 2025),
+          isActive: true,
+          name: 'Any_value',
+          description: 'Any_desc',
+          highlightedUntil: faker.date.dateTime(minYear: 2022, maxYear: 2025),
+          start: DateTime(2030, 03, 03, 11, 20),
+          end: DateTime(2030, 03, 03, 11, 20),
+          contactPhone: faker.phoneNumber.us(),
+          address: faker.address.city(),
+          idCreator: faker.guid.guid(),
+          idCategory: '0e29d2dd-da6c-4747-9ba5-3f6907147eca',
+          promoterDescription: faker.lorem.sentence(),
+          image: 'https://picsum.photos/id/237/200/300',
+          minimumAge: faker.randomGenerator.integer(70),
+          eventType: enumEventType.public,
+        )
+      ];
+
   static EventEntity makeEventEntity() {
     return EventEntity(
       id: faker.guid.guid(),

@@ -28,42 +28,47 @@ void main() {
     );
   }
 
-  testWidgets('testing BstagePoliceText', (tester) async {
+  // testWidgets('testing BstagePoliceText', (tester) async {
+  //   await _makePageLogin(tester);
+  //   final textBemVindoBstageFind = find.text('Bem vindo ao BStage');
+  //   Text propTextBemVindoBstageFind = tester.firstWidget(textBemVindoBstageFind);
+
+  //   expect(textBemVindoBstageFind, findsOneWidget);
+  //   expect(propTextBemVindoBstageFind.style!.color, MakeThemeData.secundaryColor);
+  //   expect(propTextBemVindoBstageFind.style!.fontSize, 30);
+  //   expect(propTextBemVindoBstageFind.style!.fontWeight, FontWeight.bold);
+  //   expect(propTextBemVindoBstageFind.textAlign, TextAlign.center);
+
+  //   final textPoliceBstage = find.text(
+  //       'Ao entrar você concorda com os nossos Termos. Saiba como processamos seus dados em nossa Política de Privacidade e Política de Cookies.');
+
+  //   Text propTextPoliceBstage = tester.firstWidget(textPoliceBstage);
+
+  //   expect(textPoliceBstage, findsOneWidget);
+  //   expect(propTextPoliceBstage.style!.color, MakeThemeData.secundaryColorLight);
+  //   expect(propTextPoliceBstage.style!.fontWeight, FontWeight.normal);
+  //   expect(propTextPoliceBstage.style!.fontSize, 20);
+  // });
+
+  // testWidgets('Button', (tester) async {
+  //   await _makePageLogin(tester);
+
+  //   final findFbButton = find.text('Entrar com Facebook');
+  //   final test = find.ancestor(of: findFbButton, matching: find.byType(ElevatedButton));
+  //   // find.byWidgetPredicate((w) => w is ElevatedButton && w.child == const Text('Entrar com Facebook'));
+  //   expect(test, findsOneWidget);
+  // });
+
+  // testWidgets('Find Icon Animation', (tester) async {
+  //   await _makePageLogin(tester);
+
+  //   final findIcon = find.byType(BstageIcon);
+
+  //   expect(findIcon, findsOneWidget);
+  // });
+
+  testWidgets('GoldenTest SplashPage', (tester) async {
     await _makePageLogin(tester);
-    final textBemVindoBstageFind = find.text('Bem vindo ao BStage');
-    Text propTextBemVindoBstageFind = tester.firstWidget(textBemVindoBstageFind);
-
-    expect(textBemVindoBstageFind, findsOneWidget);
-    expect(propTextBemVindoBstageFind.style!.color, MakeThemeData.secundaryColor);
-    expect(propTextBemVindoBstageFind.style!.fontSize, 30);
-    expect(propTextBemVindoBstageFind.style!.fontWeight, FontWeight.bold);
-    expect(propTextBemVindoBstageFind.textAlign, TextAlign.center);
-
-    final textPoliceBstage = find.text(
-        'Ao entrar você concorda com os nossos Termos. Saiba como processamos seus dados em nossa Política de Privacidade e Política de Cookies.');
-
-    Text propTextPoliceBstage = tester.firstWidget(textPoliceBstage);
-
-    expect(textPoliceBstage, findsOneWidget);
-    expect(propTextPoliceBstage.style!.color, MakeThemeData.secundaryColorLight);
-    expect(propTextPoliceBstage.style!.fontWeight, FontWeight.normal);
-    expect(propTextPoliceBstage.style!.fontSize, 20);
-  });
-
-  testWidgets('Button', (tester) async {
-    await _makePageLogin(tester);
-
-    final findFbButton = find.text('Entrar com Facebook');
-    final test = find.ancestor(of: findFbButton, matching: find.byType(ElevatedButton));
-    // find.byWidgetPredicate((w) => w is ElevatedButton && w.child == const Text('Entrar com Facebook'));
-    expect(test, findsOneWidget);
-  });
-
-  testWidgets('Find Icon Animation', (tester) async {
-    await _makePageLogin(tester);
-
-    final findIcon = find.byType(BstageIcon);
-
-    expect(findIcon, findsOneWidget);
+    await expectLater(find.byType(LoginPage), matchesGoldenFile('golden_test/loginPage.png'));
   });
 }
