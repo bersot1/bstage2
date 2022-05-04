@@ -73,32 +73,30 @@ void main() {
     expect(findNameEvent, findsOneWidget);
   });
 
-  // testWidgets('Should verify hint text search Event.', (tester) async {
-  //   _mockTabEventState(TabEventSuccessState(premiumEvents: _premiumEvents, publicEvents: _publicEvents));
-  //   await _makePageRoot(tester);
+  testWidgets('Should verify icon when click on textField', (tester) async {
+    _mockTabEventState(TabEventSuccessState(premiumEvents: _premiumEvents, publicEvents: _publicEvents));
+    await _makePageRoot(tester);
 
-  //   final findTextField = find.byWidgetPredicate(
-  //     (widget) =>
-  //         widget is TextField &&
-  //         widget.decoration ==
-  //             const InputDecoration(
-  //               hintText: 'Pesquise um evento',
-  //               border: InputBorder.none,
-  //             ),
-  //   );
-  //   expect(findTextField, findsOneWidget);
+    final findTextField = find.byWidgetPredicate(
+      (widget) =>
+          widget is TextField &&
+          widget.decoration ==
+              const InputDecoration(
+                hintText: 'Pesquise um evento',
+                border: InputBorder.none,
+              ),
+    );
+    expect(findTextField, findsOneWidget);
 
-  //   await tester.enterText(findTextField, 'any_value');
-  //   // await Future.delayed(const Duration(seconds: 1));
-  //   await tester.pumpAndSettle();
-  //   await tester.pumpAndSettle();
-  //   await tester.pumpAndSettle();
+    final findIconSearch = find.byIcon(Icons.search);
+    expect(findIconSearch, findsOneWidget);
 
-  //   print('123');
-  // });
+    await tester.tap(findTextField);
+    await tester.pumpAndSettle();
 
-// final input = tester.widget<EditableText>(passwordTextFormField);
-// expect(input.obscureText, isTrue);
+    final findCloseWidget = find.byIcon(Icons.close);
+    expect(findCloseWidget, findsOneWidget);
+  });
 
   testWidgets('GoldenTest TabEvent - Success', (tester) async {
     _mockTabEventState(TabEventSuccessState(premiumEvents: _premiumEvents, publicEvents: _publicEvents));

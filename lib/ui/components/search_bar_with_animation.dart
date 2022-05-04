@@ -38,7 +38,7 @@ class _BstageSearchBarState extends State<BstageSearchBar> {
   void _onFocusChange() {
     if (_focusTextFormField.hasFocus) {
       iconSearch = false;
-    } else {
+    } else if (_focusTextFormField.hasFocus == false && _controllerTextSearch.text == '') {
       iconSearch = true;
     }
     setState(() {});
@@ -90,6 +90,7 @@ class _BstageSearchBarState extends State<BstageSearchBar> {
                           () {
                             FocusManager.instance.primaryFocus?.unfocus();
                             _controllerTextSearch.clear();
+                            iconSearch = true;
                             context.read<TabEventBloc>().add(TabEventCloseSearchState());
                           },
                         );
