@@ -86,6 +86,12 @@ void main() {
 
       expect(response, throwsA(HttpError.serverError));
     });
+
+    // test('Should call post Form Data with correct values', () async {
+    //   File file = File('lib/ui/assets/icon/favicon512.png');
+    //   await sut.postWithFile(url: url, body: {'any_key': 'any_value'}, file: file);
+    //   verify(() => client.post(url, data: {"any_key": "any_value"}));
+    // });
   });
 
   group('get', () {

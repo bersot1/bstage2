@@ -1,6 +1,7 @@
 # This is a generated file; do not edit or check into version control.
 flutter_facebook_auth=/Users/ctw01953-admin/dev/flutter/2.5.3/.pub-cache/hosted/pub.dartlang.org/flutter_facebook_auth-4.2.0/
 flutter_facebook_auth_web=/Users/ctw01953-admin/dev/flutter/2.5.3/.pub-cache/hosted/pub.dartlang.org/flutter_facebook_auth_web-3.1.0/
+integration_test=/Users/ctw01953-admin/dev/flutter/2.5.3/packages/integration_test/
 path_provider_linux=/Users/ctw01953-admin/dev/flutter/2.5.3/.pub-cache/hosted/pub.dartlang.org/path_provider_linux-2.1.5/
 path_provider_windows=/Users/ctw01953-admin/dev/flutter/2.5.3/.pub-cache/hosted/pub.dartlang.org/path_provider_windows-2.0.5/
 shared_preferences=/Users/ctw01953-admin/dev/flutter/2.5.3/.pub-cache/hosted/pub.dartlang.org/shared_preferences-2.0.13/
