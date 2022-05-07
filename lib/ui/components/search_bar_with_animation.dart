@@ -67,6 +67,7 @@ class _BstageSearchBarState extends State<BstageSearchBar> {
               child: Padding(
                 padding: const EdgeInsets.only(left: 20.0, bottom: 2),
                 child: TextField(
+                  key: const Key('tab-events-page-bstage-search-bar'),
                   controller: _controllerTextSearch,
                   focusNode: _focusTextFormField,
                   onChanged: onTextChange,
