@@ -65,4 +65,19 @@ class EventUsecaseMock implements IEventUsecases {
     await Future.delayed(const Duration(seconds: 1));
     return Future.value(events);
   }
+
+  @override
+  Future<List<EventEntity>> getAllEventAsPromoterByUser({required String idUser}) async {
+    List<EventEntity> events = [];
+    events = [
+      EventsFactory.makeEventEntity(),
+      EventsFactory.makeEventEntity(),
+      EventsFactory.makeEventEntity(),
+      EventsFactory.makeEventEntity(),
+      EventsFactory.makeEventEntity(),
+      EventsFactory.makeEventEntity(),
+    ];
+    await Future.delayed(const Duration(seconds: 1));
+    return Future.value(events);
+  }
 }

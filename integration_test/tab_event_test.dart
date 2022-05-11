@@ -24,15 +24,13 @@ void main() {
 
       await tester.pumpAndSettle();
 
-      await tester.drag(find.byType(ListView), const Offset(0.0, -300));
-
-      final findTextFormField = find.byKey(const Key('tab-events-page-bstage-search-bar'));
+      final findTextFormField = find.byKey(const Key('any_value'));
       expect(findTextFormField, findsOneWidget);
 
       final findsearchIcon = find.byIcon(Icons.search);
       expect(findsearchIcon, findsOneWidget);
 
-      await tester.tap(findTextFormField);
+      await tester.tapAt(const Offset(350, 60));
 
       await tester.pumpAndSettle();
 
@@ -48,3 +46,7 @@ void main() {
     });
   });
 }
+//   final binding = IntegrationTestWidgetsFlutterBinding.ensureInitialized() as IntegrationTestWidgetsFlutterBinding;
+
+// // Necessary for being able to enterText when not in debug mode 
+//   binding.testTextInput.register();

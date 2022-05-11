@@ -16,6 +16,8 @@ class RootPageBlocSpy extends MockBloc<IRootPageEvent, int> implements RootPageB
 
 class TabEventBlocSpy extends MockBloc<ITabEventEvents, ITabEventState> implements TabEventBloc {}
 
+class TabBackstageBlocSpy extends MockBloc<ITabBackstageEvent, ITabBackstageState> implements TabBackstageBloc {}
+
 class TabInvitationBlocSpy extends MockBloc<ITabInvitationsEvent, ITabInvitationsState> implements TabInvitationBloc {}
 
 void main() {
@@ -23,6 +25,7 @@ void main() {
   late RootPage rootPage;
   late TabEventBlocSpy tabEventBloc;
   late TabInvitationBlocSpy tabInvitationBloc;
+  late TabBackstageBlocSpy tabBackstageBloc;
 
   late MockGoRouter mockGoRouter;
 
@@ -38,6 +41,8 @@ void main() {
 
     when(() => tabInvitationBloc.state)
         .thenReturn(const TabInvitationSuccessState(eventsToBePromoter: [], eventsToGo: []));
+    when(() => tabBackstageBloc.state)
+        .thenReturn(const TabBackstageSuccessState(myEventsAsCreator: [], myEventsAsPromoter: []));
   }
 
   setUp(() {
@@ -46,6 +51,7 @@ void main() {
     rootPageBloc = RootPageBlocSpy();
     tabEventBloc = TabEventBlocSpy();
     tabInvitationBloc = TabInvitationBlocSpy();
+    tabBackstageBloc = TabBackstageBlocSpy();
 
     rootPage = const RootPage();
 
@@ -64,6 +70,7 @@ void main() {
         blocs: [
           Provider<RootPageBloc>(create: (context) => rootPageBloc),
           Provider<TabEventBloc>(create: (context) => tabEventBloc),
+          Provider<TabBackstageBloc>(create: (context) => tabBackstageBloc),
           Provider<TabInvitationBloc>(create: (context) => tabInvitationBloc),
         ],
         home: rootPage,

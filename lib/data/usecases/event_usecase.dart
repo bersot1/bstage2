@@ -73,6 +73,18 @@ class EventUsecase implements IEventUsecases {
     }
   }
 
+  @override
+  Future<List<EventEntity>> getAllEventAsPromoterByUser({required String idUser}) async {
+    try {
+      List<EventEntity> result = [];
+      final httpResponse = await client.get('Eventos/queSouPromoter/$idUser') as List;
+      result = httpResponse.map((json) => EventModel.fromJson(json).toEntity()).toList();
+      return result;
+    } catch (e) {
+      throw DomainError.unexpected;
+    }
+  }
+
   String getParams(param, page, perPage, sort, filter) {
     if (page != null || perPage != null || sort != null || filter != null) {
       param = "?";

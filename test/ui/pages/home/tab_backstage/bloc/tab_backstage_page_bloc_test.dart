@@ -14,11 +14,16 @@ void main() {
   late EventRemoteUsecaseSpy eventUsecases;
   late UserLocalUsecaseSpy userLocalUsecases;
   late UserEntity user;
-  late List<EventEntity> events;
+  late List<EventEntity> eventsAsProdutor, eventsAsPromoter;
 
   setUp(() {
     user = UserEntityFactory.makeNewUserEntity();
-    events = [
+    eventsAsProdutor = [
+      EventsFactory.makeEventEntity(),
+      EventsFactory.makeEventEntity(),
+      EventsFactory.makeEventEntity(),
+    ];
+    eventsAsPromoter = [
       EventsFactory.makeEventEntity(),
       EventsFactory.makeEventEntity(),
       EventsFactory.makeEventEntity(),
@@ -27,7 +32,8 @@ void main() {
     userLocalUsecases = UserLocalUsecaseSpy();
     bloc = TabBackstageBloc(eventUsecases: eventUsecases, userLocalUsecase: userLocalUsecases);
     userLocalUsecases.mockCallGetCurrentUser(user);
-    eventUsecases.mockCallGetAllEventAsCreatorByUser(events);
+    eventUsecases.mockCallGetAllEventAsCreatorByUser(eventsAsProdutor);
+    eventUsecases.mockCallGetAllEventAsPromoterByUser(eventsAsPromoter);
   });
 
   blocTest(
@@ -45,7 +51,7 @@ void main() {
     act: (_) => bloc.add(TabBackstageGetDataEvent()),
     expect: () => [
       isA<TabBackstageLoadingState>(),
-      TabBackstageSuccessState(events),
+      TabBackstageSuccessState(myEventsAsCreator: eventsAsProdutor, myEventsAsPromoter: eventsAsPromoter),
     ],
   );
 

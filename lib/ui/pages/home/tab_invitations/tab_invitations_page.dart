@@ -15,18 +15,33 @@ class _TabInvitationsPageState extends State<TabInvitationsPage> {
   TabInvitationBloc get _tabInvitationBloc => widget.bloc;
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.transparent,
-      body: BlocBuilder<TabInvitationBloc, ITabInvitationsState>(
-        bloc: _tabInvitationBloc,
-        builder: (context, state) {
-          if (state is TabInvitationSuccessState) {
-            return const TabInvitationBodyContent();
-          }
+  void initState() {
+    super.initState();
+    _tabInvitationBloc.add(TabInvitationGetDataEvent());
+  }
 
-          return Container();
-        },
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        body: BlocBuilder<TabInvitationBloc, ITabInvitationsState>(
+          bloc: _tabInvitationBloc,
+          builder: (context, state) {
+            if (state is TabInvitationSuccessState) {
+              return TabInvitationBodyContent(
+                eventsToBePromoter: state.eventsToBePromoter,
+                eventsToGo: state.eventsToGo,
+              );
+            }
+
+            if (state is TabInvitationLoadingState) return const Center(child: CircularProgressIndicator());
+
+            if (state is TabInvitationErrorState) return const Text('error');
+
+            return Container();
+          },
+        ),
       ),
     );
   }

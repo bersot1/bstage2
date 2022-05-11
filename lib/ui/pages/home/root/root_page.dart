@@ -19,6 +19,7 @@ class _RootPageState extends State<RootPage> with SingleTickerProviderStateMixin
 
   late TabEventBloc _tabEventBloc;
   late TabInvitationBloc _tabInvitationBloc;
+  late TabBackstageBloc _tabBackstageBloc;
 
   @override
   void initState() {
@@ -26,11 +27,28 @@ class _RootPageState extends State<RootPage> with SingleTickerProviderStateMixin
     _rootPageBloc = context.read<RootPageBloc>();
     _tabEventBloc = context.read<TabEventBloc>();
     _tabInvitationBloc = context.read<TabInvitationBloc>();
+    _tabBackstageBloc = context.read<TabBackstageBloc>();
   }
 
   @override
   void dispose() {
     super.dispose();
+  }
+
+  Widget _buildFloatingActionButton(int index) {
+    if (index == 1) {
+      return const FloatingActionButton(
+        child: Icon(Icons.qr_code),
+        backgroundColor: MakeThemeData.primaryColor,
+        onPressed: null,
+      );
+    } else {
+      return const FloatingActionButton(
+        child: Icon(Icons.add),
+        backgroundColor: MakeThemeData.primaryColor,
+        onPressed: null,
+      );
+    }
   }
 
   @override
@@ -41,13 +59,8 @@ class _RootPageState extends State<RootPage> with SingleTickerProviderStateMixin
           return Scaffold(
             floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
             floatingActionButton: Visibility(
-              visible: MediaQuery.of(context).viewInsets.bottom == 0.0,
-              child: const FloatingActionButton(
-                child: Icon(Icons.add),
-                backgroundColor: MakeThemeData.primaryColor,
-                onPressed: null,
-              ),
-            ),
+                visible: MediaQuery.of(context).viewInsets.bottom == 0.0,
+                child: _buildFloatingActionButton(_rootPageBloc.currentIndex)),
             bottomNavigationBar: BottomAppBar(
               clipBehavior: Clip.antiAlias,
               shape: const CircularNotchedRectangle(),
@@ -96,7 +109,7 @@ class _RootPageState extends State<RootPage> with SingleTickerProviderStateMixin
                   children: [
                     TabEventsPage(bloc: _tabEventBloc),
                     TabInvitationsPage(bloc: _tabInvitationBloc),
-                    const TabBackstagePage(),
+                    TabBackstagePage(bloc: _tabBackstageBloc),
                     const TabProfilePage(),
                   ],
                 ),

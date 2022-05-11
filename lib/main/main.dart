@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:provider/provider.dart';
+import 'package:provider/single_child_widget.dart';
 
 void main() {
   runApp(const MyApp());
@@ -27,6 +28,17 @@ class _MyAppState extends State<MyApp> {
     super.initState();
   }
 
+  List<SingleChildWidget> _tabsProviders() => [
+        Provider<RootPageBloc>(create: (_) => RootPageBloc()),
+        Provider<TabEventBloc>(create: (_) => TabEventBloc(eventUsecases: EventUsecaseMock())),
+        Provider<TabInvitationBloc>(
+            create: (_) =>
+                TabInvitationBloc(inviteUsecase: InviteUsecaseMock(), userLocalUsecase: UserLocalUsecaseMock())),
+        Provider<TabBackstageBloc>(
+            create: (_) =>
+                TabBackstageBloc(eventUsecases: EventUsecaseMock(), userLocalUsecase: UserLocalUsecaseMock())),
+      ];
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
@@ -36,16 +48,7 @@ class _MyAppState extends State<MyApp> {
     return Builder(builder: (context) {
       initializeDateFormatting('pt_BR');
       return MultiProvider(
-        providers: [
-          Provider<TabEventBloc>(create: (_) => TabEventBloc(eventUsecases: EventUsecaseMock())),
-          Provider<RootPageBloc>(create: (_) => RootPageBloc()),
-          Provider<TabInvitationBloc>(
-            create: (_) => TabInvitationBloc(
-              inviteUsecase: InviteUsecaseMock(),
-              userLocalUsecase: UserLocalUsecaseMock(),
-            ),
-          ),
-        ],
+        providers: _tabsProviders() + [],
         child: MaterialApp.router(
           debugShowCheckedModeBanner: false,
           supportedLocales: const [
