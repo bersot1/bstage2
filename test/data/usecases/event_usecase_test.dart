@@ -22,6 +22,7 @@ void main() {
     sut = EventUsecase(httpClient);
     apiResult = EventsFactory.makeListPublicEvent();
     httpClient.mockRequestGet(apiResult);
+    idUser = faker.guid.guid();
   });
 
   group('EventUsecase - Create', () {
@@ -122,10 +123,7 @@ void main() {
     });
   });
 
-  group('EventUsecase - GetAllUserEventAsCreator', () {
-    setUp(() {
-      idUser = faker.guid.guid();
-    });
+  group('EventUsecase - getAllEventAsCreatorByUser', () {
     test('Should call httClient with correct values', () async {
       await sut.getAllEventAsCreatorByUser(idUser: idUser);
 
@@ -179,6 +177,28 @@ void main() {
       final result = sut.getAll(filter: 'any');
 
       expect(result, throwsA(DomainError.unexpected));
+    });
+  });
+
+  group('EventUsecase - GetAllEventsAsPromoterByUser', () {
+    test('Should call httpClient with correct values', () async {
+      await sut.getAllEventAsPromoterByUser(idUser: idUser);
+
+      verify(() => httpClient.get('Eventos/queSouPromoter/$idUser'));
+    });
+
+    test('Should return List<EventEntity if HttpClient returns 200>', () async {
+      final response = await sut.getAllEventAsPromoterByUser(idUser: idUser);
+
+      expect(response, isA<List<EventEntity>>());
+    });
+
+    test('Should return Domain Enexpected error when http throws error', () {
+      httpClient.mockRequestGetWithParametersError(HttpError.serverError);
+
+      final response = sut.getAllEventAsPromoterByUser(idUser: idUser);
+
+      expect(response, throwsA(DomainError.unexpected));
     });
   });
 }

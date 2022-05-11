@@ -20,4 +20,11 @@ class EventRemoteUsecaseSpy extends Mock implements IEventUsecases {
       mockGetAllEventAsCreatorByUserExecuteCall().thenAnswer((_) async => value);
   void mockCallGetAllEventAsCreatorByUserError(DomainError error) =>
       mockGetAllEventAsCreatorByUserExecuteCall().thenThrow(error);
+
+  When mockGetAllEventAsPromoterByUserExecuteCall() =>
+      when(() => getAllEventAsPromoterByUser(idUser: any(named: 'idUser')));
+  void mockCallGetAllEventAsPromoterByUser(List<EventEntity> value) =>
+      mockGetAllEventAsPromoterByUserExecuteCall().thenAnswer((_) async => value);
+  void mockCallGetAllEventAsPromoterByUserError(DomainError error) =>
+      mockGetAllEventAsPromoterByUserExecuteCall().thenThrow(error);
 }
