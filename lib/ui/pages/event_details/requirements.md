@@ -1,10 +1,10 @@
 ## Old bstage
 1. IdPerfil ✅
 2. Verificar se é convidado (gellAllInvitersOfTheEvent ✅)
-3. Verificar o nome de quem convidou (eventsThatIamInvitedPublicEvent) -> pegar dados no tabInvitation
-4. verificar se o evento está expirado
-5. nome da categoria
-6. verificar se é criador
+3. Verificar o nome de quem convidou (eventsThatIamInvitedPublicEvent) -> pegar dados no tabInvitation ✅
+4. verificar se o evento está expirado ✅ -> date
+5. nome da categoria ✅
+6. verificar se é criador ✅
 
 
 

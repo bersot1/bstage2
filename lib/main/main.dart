@@ -43,7 +43,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
 
-    _router = Routes.makeRoutes();
+    _router = Routes.makeRoutes(context);
 
     return Builder(builder: (context) {
       initializeDateFormatting('pt_BR');
