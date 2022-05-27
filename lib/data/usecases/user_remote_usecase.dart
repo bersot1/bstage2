@@ -61,4 +61,16 @@ class UserRemoteUsecase implements IUserRemoteUsecase {
       throw DomainError.unexpected;
     }
   }
+
+  @override
+  Future<List<InfoGuestEventModel>> getAllGuestByEvent(String idEvent) async {
+    try {
+      List<InfoGuestEventModel> result = [];
+      final httpResponse = await httpClient.get('Convites/todosPorEvento/$idEvent') as List;
+      result = httpResponse.map((e) => InfoGuestEventModel.fromJson(e)).toList();
+      return result;
+    } catch (e) {
+      throw DomainError.unexpected;
+    }
+  }
 }

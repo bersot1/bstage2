@@ -4,6 +4,76 @@ import 'package:bstage2/domain/helpers/params/result_login_social_param.dart';
 import 'package:faker/faker.dart';
 
 class UserEntityFactory {
+  static List<Map> makeMapInfoGuestEventModel() => [
+        InfoGuestEventModel(
+          id: faker.guid.guid(),
+          name: faker.person.firstName(),
+          instagram: "@${faker.person.name()}",
+          picture: faker.image.image(),
+          email: faker.internet.email(),
+          status: faker.randomGenerator.integer(2),
+        ).toJson(),
+        InfoGuestEventModel(
+          id: faker.guid.guid(),
+          name: faker.person.firstName(),
+          instagram: "@${faker.person.name()}",
+          picture: faker.image.image(),
+          email: faker.internet.email(),
+          status: faker.randomGenerator.integer(2),
+        ).toJson(),
+        InfoGuestEventModel(
+          id: faker.guid.guid(),
+          name: faker.person.firstName(),
+          instagram: "@${faker.person.name()}",
+          picture: faker.image.image(),
+          email: faker.internet.email(),
+          status: faker.randomGenerator.integer(2),
+        ).toJson(),
+        InfoGuestEventModel(
+          id: faker.guid.guid(),
+          name: faker.person.firstName(),
+          instagram: "@${faker.person.name()}",
+          picture: faker.image.image(),
+          email: faker.internet.email(),
+          status: faker.randomGenerator.integer(2),
+        ).toJson(),
+        InfoGuestEventModel(
+          id: faker.guid.guid(),
+          name: faker.person.firstName(),
+          instagram: "@${faker.person.name()}",
+          picture: faker.image.image(),
+          email: faker.internet.email(),
+          status: faker.randomGenerator.integer(2),
+        ).toJson(),
+      ];
+
+  static List<InfoGuestEventModel> makeListInfoGuestEventModel() => [
+        InfoGuestEventModel(
+          id: faker.guid.guid(),
+          name: faker.person.firstName(),
+          instagram: "@${faker.person.name()}",
+          picture: faker.image.image(),
+          email: faker.internet.email(),
+          status: faker.randomGenerator.integer(2),
+        ),
+        InfoGuestEventModel(
+          id: faker.guid.guid(),
+          name: faker.person.firstName(),
+          instagram: "@${faker.person.name()}",
+          picture: faker.image.image(),
+          email: faker.internet.email(),
+          status: faker.randomGenerator.integer(2),
+        ),
+        InfoGuestEventModel(
+          id: faker.guid.guid(),
+          name: faker.person.firstName(),
+          instagram: "@${faker.person.name()}",
+          picture: faker.image.image(),
+          email: faker.internet.email(),
+          status: faker.randomGenerator.integer(2),
+        ),
+      ];
+
   static UserEntity makeNewUserEntity() => UserEntity(
         id: faker.guid.guid(),
         register: faker.date.dateTime(),

@@ -10,6 +10,11 @@ class RootPageBloc extends Bloc<IRootPageEvent, int> {
     currentIndex = 0;
   }
 
+  void updateEventInternalData() {
+    // Eventos/eventosQueEuSoliciteiSerPromoter/idPerfil
+    // Eventos/withPendenciesFromProdutorToPromotersTobePromoters/perfil/idPerfil
+  }
+
   void changeTab(
     IRootPageEvent event,
     Emitter<int> emit,

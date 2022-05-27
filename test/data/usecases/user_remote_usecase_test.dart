@@ -15,6 +15,7 @@ void main() {
   late UserRemoteUsecase sut;
   late HttpClientSpy httpClient;
   late FbPackageSpy fbPackage;
+  late List<Map> apiResult;
 
   setUp(() {
     httpClient = HttpClientSpy();
@@ -92,8 +93,6 @@ void main() {
   });
 
   group('VerifyAccountExist - ', () {
-    late List<Map> apiResult;
-
     setUp(() {
       apiResult = [
         UserEntityFactory.makeNewUser(),
@@ -129,6 +128,34 @@ void main() {
       httpClient.mockRequestGetWithParametersError(HttpError.serverError);
 
       final response = sut.verifyIfUserExist(faker.guid.guid());
+
+      expect(response, throwsA(DomainError.unexpected));
+    });
+  });
+
+  group('GetAllGuestByEvent', () {
+    late String idEvent;
+    setUp(() {
+      idEvent = faker.guid.guid();
+      apiResult = UserEntityFactory.makeMapInfoGuestEventModel();
+      httpClient.mockRequestGet(apiResult);
+    });
+    test('Should call httpClient with correct value', () async {
+      await sut.getAllGuestByEvent(idEvent);
+
+      verify(() => httpClient.get('Convites/todosPorEvento/$idEvent'));
+    });
+
+    test('Should return List<InfoGuestEventModel> when returns 200', () async {
+      final response = await sut.getAllGuestByEvent(idEvent);
+
+      expect(response, isA<List<InfoGuestEventModel>>());
+    });
+
+    test('Should return Unexpected error when throws', () async {
+      httpClient.mockRequestGetError(HttpError.unauthorized);
+
+      final response = sut.getAllGuestByEvent(idEvent);
 
       expect(response, throwsA(DomainError.unexpected));
     });

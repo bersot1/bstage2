@@ -7,14 +7,20 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class TabInvitationBloc extends Bloc<ITabInvitationsEvent, ITabInvitationsState> {
   final IInvitesUsecase inviteUsecase;
   final IUserLocalUsecase userLocalUsecase;
+
+  late String idUser;
+  late List<EventUserWasInvitedModel> _eventsToGo;
+  late List<EventUserWasInvitedModel> _eventsToBePromoter;
+
   TabInvitationBloc({
     required this.inviteUsecase,
     required this.userLocalUsecase,
   }) : super(TabInvitationLoadingState()) {
     on<TabInvitationGetDataEvent>(_getData);
-  }
 
-  late String idUser;
+    _eventsToGo = [];
+    _eventsToBePromoter = [];
+  }
 
   Future<void> _getData(
     TabInvitationGetDataEvent event,
@@ -23,9 +29,9 @@ class TabInvitationBloc extends Bloc<ITabInvitationsEvent, ITabInvitationsState>
     try {
       emit(TabInvitationLoadingState());
       await _getIdUser();
-      final eventsToGo = await _getEventsToGo();
-      final eventsToBoPromoter = await _getEventsToBePromoter();
-      emit(TabInvitationSuccessState(eventsToBePromoter: eventsToBoPromoter, eventsToGo: eventsToGo));
+      _eventsToGo = await _getEventsToGo();
+      _eventsToBePromoter = await _getEventsToBePromoter();
+      emit(TabInvitationSuccessState(eventsToBePromoter: _eventsToBePromoter, eventsToGo: _eventsToGo));
     } catch (_) {
       emit(TabInvitationErrorState());
     }
