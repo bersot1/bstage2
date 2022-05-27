@@ -1,25 +1,29 @@
 import 'package:bstage2/domain/domain.dart';
+import 'package:bstage2/ui/pages/event_details/bloc/event_details_page_bloc.dart';
+import 'package:bstage2/ui/pages/event_details/bloc/event_details_page_event.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class EventDetailsPage extends StatefulWidget {
-  const EventDetailsPage({Key? key, required this.event}) : super(key: key);
-
-  final EventEntity event;
+  const EventDetailsPage({Key? key, required this.bloc}) : super(key: key);
+  final EventDetailsBloc bloc;
 
   @override
   State<EventDetailsPage> createState() => _EventDetailsPageState();
 }
 
 class _EventDetailsPageState extends State<EventDetailsPage> {
-  EventEntity get _event => widget.event;
+  EventDetailsBloc get _bloc => widget.bloc;
+  EventEntity get _event => _bloc.eventDetails;
+
+  @override
+  void initState() {
+    super.initState();
+    _bloc.add(EventDetailsPageGetInitialDataEvent());
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(icon: Icon(Icons.dangerous), onPressed: () => GoRouter.of(context).pop()),
-      ),
       body: Center(
         child: Text(_event.name),
       ),

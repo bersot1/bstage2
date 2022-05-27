@@ -1,5 +1,6 @@
 import 'package:bstage2/domain/domain.dart';
 import 'package:bstage2/main/main_export.dart';
+import 'package:bstage2/ui/pages/event_details/bloc/event_details_page_bloc.dart';
 import 'package:bstage2/ui/pages/home/components/bstage_tab_title.dart';
 import 'package:bstage2/ui/pages/home/components/components.dart';
 import 'package:flutter/material.dart';
@@ -47,7 +48,7 @@ class _TabEventBodyContentState extends State<TabEventBodyContent> {
                 var item = _premiumEvents[i];
                 return BstageEventCard(
                   event: item,
-                  func: () => GoRouter.of(context).push(Routes.eventDetails, extra: item),
+                  func: () => GoRouter.of(context).push(Routes.eventDetails, extra: EventDetailsBloc(eventParam: item)),
                 );
               },
             ),

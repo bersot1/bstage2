@@ -1,5 +1,5 @@
-import 'package:bstage2/domain/domain.dart';
 import 'package:bstage2/main/factories/pages/home/home.dart';
+import 'package:bstage2/ui/pages/event_details/bloc/event_details_page_bloc.dart';
 import 'package:bstage2/ui/pages/event_details/event_details_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -26,7 +26,7 @@ class Routes {
             path: Routes.eventDetails,
             builder: (context, state) {
               return EventDetailsPage(
-                event: state.extra as EventEntity,
+                bloc: state.extra as EventDetailsBloc,
               );
             },
           )
